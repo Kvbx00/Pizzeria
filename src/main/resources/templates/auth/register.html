@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="header">
+    <div sec:authorize="isAuthenticated()">
+        <a class="header_link_left">Zalogowany jako: <span sec:authentication="name"></span></a>
+        <a sec:authorize="hasAuthority('USER')" class="header_link_left"><a th:href="@{|/dashboard|}"
+                                                                            th:text="'Twoje konto'"
+                                                                            class="header_link"></a></a>
+        <a sec:authorize="hasAuthority('ADMIN')" class="header_link_left"><a th:href="@{|/admin/dashboard|}"
+                                                                             th:text="'Panel administratora'"
+                                                                             class="header_link"></a></a>
+        <a th:href="@{/logout}" class="header_link">Wyloguj się</a>
+    </div>
+    <!--    <a sec:authorize="hasRole('ADMIN')" class="header_link_left">Text visible to admin.</a>-->
+    <!--    <a sec:authorize="hasRole('USER')" class="header_link_left">Text visible to user</a>-->
+    <a sec:authorize="!isAuthenticated()" th:href="@{|/login|}" th:text="'Zaloguj się'" class="header_link"></a>
+    <a sec:authorize="!isAuthenticated()" th:href="@{|/register|}" th:text="'Zarejestruj się'" class="header_link"></a>
+    <a th:href="@{|/menu|}" th:text="'Menu'" class="header_link"></a>
+</div>
+
+<div class="main_login">
+    <div class="div_login">
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <h3>Rejestracja</h3>
+            <input type="text" th:field="*{name}" placeholder="Imię" class="form_login"/> <br/><br/>
+            <input type="text" th:field="*{phone}" placeholder="Numer telefonu" class="form_login"/> <br/><br/>
+            <input type="text" th:field="*{email}" placeholder="Email" class="form_login"/> <br/><br/>
+            <input type="text" th:field="*{address}" placeholder="Adres" class="form_login"/> <br/><br/>
+            <input type="password" th:field="*{password}" placeholder="Hasło" class="form_login"/> <br/><br/>
+            <select th:field="*{role}" required hidden>
+<!--                <option value="">Rola</option>-->
+<!--                <option value="ADMIN">ADMIN</option>-->
+                <option value="USER">USER</option>
+            </select> <br/><br/>
+            <button type="submit" class="button_login">Zarejestruj</button>
+            | <a th:href="@{|/login|}" th:text="'Zaloguj'" class="button_login_a"></a>
+            <span th:utext="${successMessage}"></span>
+            <div th:if="${bindingResult!=null && bindingResult.getAllErrors()!=null}">
+                <ul th:each="data : ${bindingResult.getAllErrors()}">
+                    <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

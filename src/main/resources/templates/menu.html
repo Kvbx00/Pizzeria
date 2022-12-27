@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sapori Solari</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="header">
+    <div sec:authorize="isAuthenticated()">
+        <!--        <a class="header_link_left">Zalogowany jako: <span sec:authentication="name"></span></a>-->
+        <a sec:authorize="hasAuthority('USER')" class="header_link_left"><a th:href="@{|/dashboard|}"
+                                                                            th:text="'Twoje konto'"
+                                                                            class="header_link"></a></a>
+        <a sec:authorize="hasAuthority('ADMIN')" class="header_link_left"><a th:href="@{|/admin/dashboard|}"
+                                                                             th:text="'Panel administratora'"
+                                                                             class="header_link"></a></a>
+        <a th:href="@{/logout}" class="header_link">Wyloguj się</a>
+    </div>
+    <!--    <a sec:authorize="hasRole('ADMIN')" class="header_link_left">Text visible to admin.</a>-->
+    <!--    <a sec:authorize="hasRole('USER')" class="header_link_left">Text visible to user</a>-->
+    <a sec:authorize="!isAuthenticated()" th:href="@{|/login|}" th:text="'Zaloguj się'" class="header_link"></a>
+    <a sec:authorize="!isAuthenticated()" th:href="@{|/register|}" th:text="'Zarejestruj się'" class="header_link"></a>
+    <a th:href="@{|/menu|}" th:text="'Menu'" class="header_link"></a>
+</div>
+
+<div class="menu_image">
+        <table class="table_menu">
+            <thead>
+            <tr th:each="product: ${product}">
+                <td th:text="${product.product_name}"/>
+                <td th:text="${product.product_description}"/>
+                <td th:text="${product.product_price}"/>
+            </tr>
+            </thead>
+        </table>
+</div>
+
+</body>
+</html>
