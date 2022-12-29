@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" class="menu_html">
 <head>
     <meta charset="UTF-8">
     <title>Sapori Solari</title>
@@ -24,16 +24,39 @@
     <a th:href="@{|/menu|}" th:text="'Menu'" class="header_link"></a>
 </div>
 
-<div class="menu_image">
+<div class="menu_container">
+    <div class="menu_middle">
+        <h2>PRZYSTAWKI</h2>
         <table class="table_menu">
             <thead>
-            <tr th:each="product: ${product}">
-                <td th:text="${product.product_name}"/>
-                <td th:text="${product.product_description}"/>
-                <td th:text="${product.product_price}"/>
+            <tr th:each="product: ${product_appetizer}">
+                <td th:text="${product.product_name}" class="td_left"/>
+                <td th:text="${product.product_description}" class="td_middle"/>
+                <td th:text="${product.product_price} + ' zł'" class="td_right"/>
             </tr>
             </thead>
         </table>
+        <h2>PIZZA</h2>
+        <table class="table_menu">
+            <thead>
+            <tr th:each="product: ${product_pizza}">
+                <td th:text="${product.product_name}" class="td_left"/>
+                <td th:text="${product.product_description}" class="td_middle"/>
+                <td th:text="${product.product_price} + ' zł'" class="td_right"/>
+            </tr>
+            </thead>
+        </table>
+        <h2>PASTA</h2>
+        <table class="table_menu">
+            <thead>
+            <tr th:each="product: ${product_pasta}">
+                <td th:text="${product.product_name}" class="td_left"/>
+                <td th:text="${product.product_description}" class="td_middle"/>
+                <td th:text="${product.product_price} + ' zł'" class="td_right"/>
+            </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 
 </body>

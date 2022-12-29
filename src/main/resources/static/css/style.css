@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&display=swap');
+
 body {
 	margin: 0;
-	font-family: Times New Roman, serif;
+	font-family: 'Cormorant Garamond', serif;
 }
 
 .header {
@@ -30,35 +32,52 @@ body {
 	color: #e9c46a;
 }
 
-.menu_middle {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -50px;
-	margin-left: -50px;
-	width: 500px;
-	height: 100px;
-	color: #e9c46a;
+.menu_html {
+	background-image: url("../images/bgimg.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
-.menu_image {
-	background: url("../images/bgimg.jpg");
-	position: absolute;
+.menu_container{
 	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background-size: cover;
-	z-index: -1;
-	display: table-cell;
-	vertical-align: middle;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.menu_middle {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	background-color: white;
+	width: 60%;
+	text-align: center;
+	padding-bottom: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 .table_menu{
-	color:white;
-	width:50%;
+	color:black;
+	width:90%;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: left;
+}
+
+.td_left{
+	width: 30%;
+}
+
+.td_middle{
+	width: 50%;
+}
+
+.td_right{
+	width: 20%;
+	text-align: right;
 }
 
 .image {
@@ -186,6 +205,9 @@ body {
 	border-radius: 4px;
 	transition-duration: 0.4s;
 	cursor: pointer;
+	text-decoration: none;
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 15px;
 }
 
 .button_login:hover{
