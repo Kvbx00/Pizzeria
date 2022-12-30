@@ -50,12 +50,13 @@ body {
 .menu_middle {
 	margin-top: 100px;
 	margin-bottom: 100px;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.8);
 	width: 60%;
 	text-align: center;
 	padding-bottom: 50px;
 	padding-left: 50px;
 	padding-right: 50px;
+	color: black;
 }
 
 .table_menu{
@@ -180,6 +181,7 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
+	font-family: 'Cormorant Garamond', serif;
 }
 
 .button_login_a{
