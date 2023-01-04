@@ -12,7 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	@Query("Select id from Product where category Like %?1%")
 	List<Integer> getByCategory(String keyword);
 	
-	@Query("SELECT p FROM Product p WHERE p.company LIKE %?1%"
+	@Query("SELECT p FROM Product p WHERE p.description LIKE %?1%"
 			+" OR p.name LIKE %?1%"
 			+" OR p.price LIKE %?1%"
 			+" OR p.category LIKE %?1%")

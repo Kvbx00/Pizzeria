@@ -22,12 +22,12 @@
                     <td class="admin_td"><input type="hidden" th:field="*{id}" placeholder="${product.id}" class="form_admin"/></td>
                 </tr>
                 <tr>
-                    <td class="admin_td">Manufacture Company Name</td>
-                    <td class="admin_td"><input type="text" th:field="*{company}" placeholder="${product.company}" class="form_admin" required></td>
-                </tr>
-                <tr>
                     <td class="admin_td">Nazwa produktu</td>
                     <td class="admin_td"><input type="text" th:field="*{name}" placeholder="${product.name}" class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Opis</td>
+                    <td class="admin_td"><input type="text" th:field="*{description}" placeholder="${product.description}" class="form_admin" required></td>
                 </tr>
                 <tr>
                     <td class="admin_td">Kategoria</td>

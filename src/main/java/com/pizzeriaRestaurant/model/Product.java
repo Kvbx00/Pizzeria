@@ -7,15 +7,15 @@ import javax.persistence.Id;
 public class Product {
 	@Id
 	private int id;
-	private String company;
+	private String description;
 	private String name;
 	private float price;
 	private String category;
 	
-	public Product(int id, String company, String name, float price, String category) {
+	public Product(int id, String description, String name, float price, String category) {
 		super();
 		this.id = id;
-		this.company = company;
+		this.description = description;
 		this.name = name;
 		this.price = price;
 		this.category = category;
@@ -33,12 +33,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getCompany() {
-		return company;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getName() {

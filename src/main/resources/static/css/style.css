@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap');
 
 body {
 	margin: 0;
@@ -193,14 +193,14 @@ body {
 	float: right;
 	margin-right: 20px;
 	margin-top: 25px;
-	letter-spacing: 4px;
+	letter-spacing: 3px;
 }
 
 .header_link_left{
 	margin-top: 25px;
 	margin-left: 20px;
 	text-decoration: none;
-	letter-spacing: 4px;
+	letter-spacing: 3px;
 	color:white;
 	float: left;
 }

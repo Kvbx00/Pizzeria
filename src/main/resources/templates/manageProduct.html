@@ -19,13 +19,13 @@
             <table class="table_menu">
                 <thead>
                 <tr>
-                    <td class="admin_td">Manufacture Company Name</td>
-                    <td class="admin_td"><input type="text" th:field="*{company}" placeholder="Company Name"
+                    <td class="admin_td">Nazwa produktu</td>
+                    <td class="admin_td"><input type="text" th:field="*{name}" placeholder="Nazwa produktu"
                                                 class="form_admin" required></td>
                 </tr>
                 <tr>
-                    <td class="admin_td">Nazwa produktu</td>
-                    <td class="admin_td"><input type="text" th:field="*{name}" placeholder="Nazwa produktu"
+                    <td class="admin_td">Opis</td>
+                    <td class="admin_td"><input type="text" th:field="*{description}" placeholder="Opis"
                                                 class="form_admin" required></td>
                 </tr>
                 <tr>
@@ -56,8 +56,8 @@
             <thead>
             <tr class="admin_tr">
                 <th class="admin_th">Id</th>
-                <th class="admin_th">Company Name</th>
                 <th class="admin_th">Nazwa produtku</th>
+                <th class="admin_th">Opis</th>
                 <th class="admin_th">Cena</th>
                 <th class="admin_th">Kategoria</th>
                 <th class="admin_th">Akcje</th>
@@ -66,8 +66,8 @@
             <tbody>
             <tr th:each="product : ${products}">
                 <td th:text="${product.id}" class="admin_td"></td>
-                <td th:text="${product.company}" class="admin_td"></td>
                 <td th:text="${product.name}" class="admin_td"></td>
+                <td th:text="${product.description}" class="admin_td"></td>
                 <td th:text="${product.price}" class="admin_td"></td>
                 <td th:text="${product.category}" class="admin_td"></td>
                 <td class="admin_td"><a th:href="@{/showProductUpdate/{id}(id=${product.id})}">Aktualizuj</a> <a

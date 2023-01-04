@@ -27,7 +27,7 @@
       <thead>
       <tr th:each="product : ${session.productList}">
         <td th:text="${product.name}" class="admin_td"/>
-        <td th:text="${product.company}" class="admin_td"/>
+        <td th:text="${product.description}" class="admin_td"/>
         <td th:text="${product.price} + ' zł'" class="admin_td"/>
         <td class="admin_td"><a th:href="@{/addCart/{id}(id=${product.id})}">Dodaj do koszyka</a></td>
       </tr>
