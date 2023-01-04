@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl_PL" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+	<meta charset="UTF-8">
+	<title>Sapori Solari</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+	<div th:if="${session.customerLogin == null}">
+		<a th:href="@{/register}" class="header_link">Zarejestruj się</a>
+		<a th:href="@{/login}" class="header_link">Zaloguj się</a>
+		<a th:href="@{/adminLogin}" class="header_link">Administrator</a>
+	</div>
+	<div th:if="${session.customerLogin != null}">
+		<a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
+		<a th:href="@{/viewCart}" class="header_link">Koszyk</a>
+		<a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>
+	</div>
+</div>
+
+<div class="menu_container">
+	<div class="menu_middle">
+		<h2>Dodaj do zamówienia</h2>
+		<form action="#" th:action="@{/confirmCart}", method="POST">
+			<table class="table_menu">
+				<tbody>
+					<tr>
+						<td class="admin_td">Nazwa produktu</td>
+						<td th:text="${session.product.name}" class="admin_td"></td>
+					</tr>
+					<tr>
+						<td class="admin_td">Cena</td>
+						<td th:text="${session.product.price}" class="admin_td"></td>
+					</tr>
+					<tr>
+						<td class="admin_td">Kategoria</td>
+						<td th:text="${session.product.category}" class="admin_td"></td>
+					</tr>
+					<tr>
+						<td class="admin_td">Rozmiar</td>
+						<td class="admin_td"><input type="text" name="size" placeholder="rozmiar" class="form_admin" required></td>
+					</tr>
+					<tr>
+						<td class="admin_td">Ilość</td>
+						<td class="admin_td"><input type="number" name="quantity" th:placeholder="ilość" class="form_admin" required></td>
+					</tr>
+					<tr>
+						<td class="admin_td" ><button type="submit" class="admin_button_add">Dodaj</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>

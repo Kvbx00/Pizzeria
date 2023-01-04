@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <a th:href="@{/getDashboard}" class="header_link">Powrót do panelu głównego</a>
+</div>
+
+
+<form action="#" th:action="@{/updateProduct}" th:object="${product}" , method="POST">
+    <div class="menu_container">
+        <div class="menu_middle">
+            <h2>Aktualizacja produktu</h2>
+            <table class="table_menu">
+                <thead>
+                <tr>
+                    <td class="admin_td"><input type="hidden" th:field="*{id}" placeholder="${product.id}" class="form_admin"/></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Manufacture Company Name</td>
+                    <td class="admin_td"><input type="text" th:field="*{company}" placeholder="${product.company}" class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Nazwa produktu</td>
+                    <td class="admin_td"><input type="text" th:field="*{name}" placeholder="${product.name}" class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Kategoria</td>
+                    <td class="admin_td"><input type="text" th:field="*{category}" placeholder="${product.category}" class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Cena</td>
+                    <td class="admin_td"><input type="text" th:field="*{price}" placeholder="${product.price}" class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td  class="admin_td">
+                        <button type="submit" class="admin_button_add">Aktualizuj</button>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</form>
+
+
+</body>
+</html>

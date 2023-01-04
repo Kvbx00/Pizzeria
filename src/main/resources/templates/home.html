@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl_PL" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sapori Solari</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+<body>
+
+<div class="header">
+    <div th:if="${session.customerLogin == null}">
+        <a th:href="@{/register}" class="header_link">Zarejestruj się</a>
+        <a th:href="@{/login}" class="header_link">Zaloguj się</a>
+        <a th:href="@{/adminLogin}" class="header_link">Administrator</a>
+        <a th:href="@{/menu}" class="header_link">Menu</a>
+    </div>
+    <div th:if="${session.customerLogin != null}">
+        <a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
+        <a th:href="@{/viewCart}" class="header_link">Koszyk</a>
+        <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>
+        <a th:href="@{/menu}" class="header_link">Menu</a>
+    </div>
+</div>
+
+<div class="image">
+    <div class="content">
+        <h1>Sapori Solari</h1>
+    </div>
+</div>
+
+<div class="main">
+    <div class="main_menu">
+        <div class="main_menu_text">
+            <h1>O naszej restauracji</h1>
+            <br/> Sapori Solari bar to miejsce gdzie każdy poczuje klimat
+            pozytywnej energii z twistem dobrego smaku.<br/> Co u nas zjecie?
+            Przepyszną włoską pizzę, opartą na oryginalnych włoskich
+            produktach.<br/> Oprócz tego w naszym menu pojawiają się zmienne
+            pozycję, więc warto obserwować nasz profil aby być na bieżąco.<br/>
+            Serdecznie Was zapraszamy!<br/> Będzie nam niezmiernie milo
+            spędzić z Wami czas i sprawić byście poczuli klimat Hygge!
+        </div>
+    </div>
+    <div class="footer">
+        <div class="text_footer_left">
+            <h2>Skontaktuj się z nami</h2>
+            Napisz lub zadzwoń do nas!<br/>
+            Wojska Polskiego 32, 41-208 Sosnowiec<br/> Telefon: 888 777 666<br/>
+            Email: saporisolari@gmail.com
+        </div>
+        <div class="text_footer_right">
+            <h2>Godziny otwarcia:</h2>
+            Pon - pt : 10:00 - 18:00<br/>
+            Sobota : 10:00 - 21:00<br/>
+            Niedziela : 10:00 - 16:00
+        </div>
+    </div>
+</div>
+
+<!--<div class="container">-->
+<!--&lt;!&ndash;    <span>Welcome </span><span th:text="${session.custName}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h5 th:text="${action}"></h5>&ndash;&gt;-->
+<!--    <div>-->
+<!--        <div th:each="product : ${session.productList}">-->
+<!--            <table>-->
+<!--                <tr>-->
+<!--                    <td>Company</td>-->
+<!--                    <td th:text="${product.company}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Name</td>-->
+<!--                    <td th:text="${product.name}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Price</td>-->
+<!--                    <td th:text="${product.price}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Category</td>-->
+<!--                    <td th:text="${product.category}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td><a th:href="@{/addCart/{id}(id=${product.id})}">Add to Cart</a></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <a th:href="@{/changePassword}" class="header_link">Zmień hasło</a>
+    <a th:href="@{/logout}" class="header_link">Wyloguj się</a>
+</div>
+
+<div class="menu_container">
+    <div class="menu_middle">
+        <table class="table_menu">
+            <thead>
+            <tr>
+                <td class="admin_td_left"><a th:href="@{/manageProduct}" class="admin_table_td">Zarządzaj produktami</a></td>
+                <td class="admin_td_middle"><a th:href="@{/manageCustomer}" class="admin_table_td">Zarządzaj użytkownikami</a></td>
+                <td class="admin_td_right"><a th:href="@{/managePurchase}" class="admin_table_td">Zarządzaj zamówieniami</a></td>
+            </tr>
+            </thead>
+        </table>
+        <h3 th:text="${action}"></h3>
+    </div>
+</div>
+
+
+
+</body>
+</html>

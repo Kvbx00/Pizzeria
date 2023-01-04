@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl_PL" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+    <meta charset="UTF-8">
+    <title>Sapori Solari</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <div th:if="${session.customerLogin == null}">
+        <a th:href="@{/register}" class="header_link">Zarejestruj się</a>
+        <a th:href="@{/login}" class="header_link">Zaloguj się</a>
+        <a th:href="@{/adminLogin}" class="header_link">Administrator</a>
+    </div>
+    <div th:if="${session.customerLogin != null}">
+        <a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
+        <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>
+    </div>
+</div>
+
+<div class="menu_container">
+    <div class="menu_middle">
+        <h2>Koszyk</h2>
+        <h3 th:text="${action}"></h3>
+        <span th:text="${session.action}"></span>
+        <table class="table_menu">
+            <thead>
+            <tr>
+                <th class="admin_th">Id produktu</th>
+                <th class="admin_th">Ilość</th>
+                <th class="admin_th">Rozmiar</th>
+                <th class="admin_th">Cena</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cart : ${cartList}">
+                <td th:text="${cart.productId}" class="admin_td"></td>
+                <td th:text="${cart.quantity}" class="admin_td"></td>
+                <td th:text="${cart.size}" class="admin_td"></td>
+                <td th:text="${cart.price}" class="admin_td"></td>
+            </tr>
+            </tbody>
+        </table><br>
+
+        <form th:action="@{/buyNow}" , method="POST">
+            <input type="radio" name="pm" id="yes" value="yes" checked hidden/>
+            <input type="radio" name="pm" id="no" value="no" hidden/>
+            <span class="admin_td" th:text=" 'Kwota twojego zamówienia: ' + ${session.sessionCost} + 'zł'"></span>
+            <button class="admin_button_add" type="submit" style="margin-left: 10px">Zamów</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl_PL" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <a th:href="@{/getDashboard}" class="header_link">Powrót do panelu głównego</a>
+</div>
+
+<div class="menu_container">
+    <div class="menu_middle">
+        <h2>Lista zamówień</h2>
+        <form th:action="@{/searchPurchaseDate}" method="POST">
+            <input type="date" name="keyword" Placeholder="YYYY-MM-DD" class="form_admin">
+            <button type="submit" class="admin_button_add">Szukaj</button>
+        </form>
+
+        <form th:action="@{/searchPurchaseCategory}" method="POST">
+            <input type="text" name="keyword" Placeholder="Wyszukaj produkt" class="form_admin">
+            <button type="submit" class="admin_button_add">Szukaj</button>
+        </form>
+        <h3 th:text="${action}"></h3>
+        <span th:text="${session.action}"></span>
+        <table class="table_menu">
+            <thead>
+            <tr>
+                <th class="admin_th">Id zamówienia</th>
+                <th class="admin_th">Id produktu</th>
+                <th class="admin_th">Data zamówienia</th>
+                <th class="admin_th">Rozmiar</th>
+                <th class="admin_th">Ilość</th>
+                <th class="admin_th">Koszt</th>
+                <th class="admin_th">Email użytkownika</th>
+                <th class="admin_th">Imię</th>
+                <th class="admin_th">Akcje</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="purchase : ${purchases}">
+                <td th:text="${purchase.id}" class="admin_td"></td>
+                <td th:text="${purchase.productid}" class="admin_td"></td>
+                <td th:text="${purchase.dop}" class="admin_td"></td>
+                <td th:text="${purchase.size}" class="admin_td"></td>
+                <td th:text="${purchase.quantity}" class="admin_td"></td>
+                <td th:text="${purchase.totalcost}" class="admin_td"></td>
+                <td th:text="${purchase.customer.email}" class="admin_td"></td>
+                <td th:text="${purchase.customer.name}" class="admin_td"></td>
+                <td class="admin_td"><a th:href="@{/deletePurchase/{id}(id=${purchase.id})}">Usuń</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

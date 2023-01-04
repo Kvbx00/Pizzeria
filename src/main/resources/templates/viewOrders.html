@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl_PL" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+    <meta charset="UTF-8">
+    <title>Sapori Solari</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <div th:if="${session.customerLogin == null}">
+        <a th:href="@{/register}" class="header_link">Zarejestruj się</a>
+        <a th:href="@{/login}" class="header_link">Zaloguj się</a>
+        <a th:href="@{/adminLogin}" class="header_link">Administrator</a>
+    </div>
+    <div th:if="${session.customerLogin != null}">
+        <a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
+        <a th:href="@{/viewCart}" class="header_link">Koszyk</a>
+        <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>
+    </div>
+</div>
+
+<div class="menu_container">
+    <div class="menu_middle">
+        <h2>Zamówienia</h2>
+        <h3 th:text="${action}"></h3>
+        <span th:text="${session.action}"></span>
+        <table class="table_menu">
+            <thead>
+            <tr>
+                <th class="admin_th">Id zamówienia</th>
+                <th class="admin_th">Id produktu</th>
+                <th class="admin_th">Data zamówienia</th>
+                <th class="admin_th">Rozmiar</th>
+                <th class="admin_th">Ilość</th>
+                <th class="admin_th">Koszt</th>
+                <th class="admin_th">Email użytkownika</th>
+                <th class="admin_th">Imię</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="purchase : ${sPurchase}">
+                <td th:text="${purchase.id}" class="admin_td"></td>
+                <td th:text="${purchase.productid}" class="admin_td"></td>
+                <td th:text="${purchase.dop}" class="admin_td"></td>
+                <td th:text="${purchase.size}" class="admin_td"></td>
+                <td th:text="${purchase.quantity}" class="admin_td"></td>
+                <td th:text="${purchase.totalcost}" class="admin_td"></td>
+                <td th:text="${purchase.customer.email}" class="admin_td"></td>
+                <td th:text="${purchase.customer.name}" class="admin_td"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <a th:href="@{/getDashboard}" class="header_link">Powrót do panelu głównego</a>
+</div>
+
+
+<form action="#" th:action="@{/addProduct}" th:object="${product}" , method="POST">
+    <div class="menu_container">
+        <div class="menu_middle">
+            <h2>Dodawanie produktu</h2>
+            <table class="table_menu">
+                <thead>
+                <tr>
+                    <td class="admin_td">Manufacture Company Name</td>
+                    <td class="admin_td"><input type="text" th:field="*{company}" placeholder="Company Name"
+                                                class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Nazwa produktu</td>
+                    <td class="admin_td"><input type="text" th:field="*{name}" placeholder="Nazwa produktu"
+                                                class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Kategoria</td>
+                    <td class="admin_td"><input type="text" th:field="*{category}" placeholder="Kategoria"
+                                                class="form_admin" required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">Cena</td>
+                    <td class="admin_td"><input type="text" th:field="*{price}" placeholder="Cena" class="form_admin"
+                                                required></td>
+                </tr>
+                <tr>
+                    <td class="admin_td">
+                        <button type="submit" class="admin_button_add">Dodaj</button>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</form>
+
+<div class="menu_container">
+    <div class="menu_middle">
+        <h2>Wszystkie produkty</h2>
+        <table class="table_menu">
+            <thead>
+            <tr class="admin_tr">
+                <th class="admin_th">Id</th>
+                <th class="admin_th">Company Name</th>
+                <th class="admin_th">Nazwa produtku</th>
+                <th class="admin_th">Cena</th>
+                <th class="admin_th">Kategoria</th>
+                <th class="admin_th">Akcje</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}" class="admin_td"></td>
+                <td th:text="${product.company}" class="admin_td"></td>
+                <td th:text="${product.name}" class="admin_td"></td>
+                <td th:text="${product.price}" class="admin_td"></td>
+                <td th:text="${product.category}" class="admin_td"></td>
+                <td class="admin_td"><a th:href="@{/showProductUpdate/{id}(id=${product.id})}">Aktualizuj</a> <a
+                        th:href="@{/deleteProduct/{id}(id=${product.id})}">Usuń</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

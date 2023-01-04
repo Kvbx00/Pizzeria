@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" class="menu_html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <a th:href="@{/manageCustomer}" class="header_link">Powrót do zarządzania użytkownikami</a>
+</div>
+
+<div class="menu_container">
+    <div class="menu_middle">
+        <h2>Lista użytkowników</h2>
+        <h3 th:text="${action}"></h3>
+        <span th:text="${session.action}"></span>
+        <table class="table_menu">
+            <thead>
+            <tr>
+                <th class="admin_th">Email</th>
+                <th class="admin_th">Imię</th>
+                <th class="admin_th">Telefon</th>
+                <th class="admin_th">Akcje</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${sCustomer}">
+                <td th:text="${customer.email}" class="admin_td"></td>
+                <td th:text="${customer.name}" class="admin_td"></td>
+                <td th:text="${customer.contact}" class="admin_td"></td>
+                <td class="admin_td"><a th:href="@{/deleteCustomer/{email}(email=${customer.email})}">Usuń</a>
+                    <a th:href="@{/customerOrders/{email}(email=${customer.email})}">Zamówienia użytkownika</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

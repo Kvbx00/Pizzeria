@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <div th:if="${session.customerLogin == null}">
+        <a th:href="@{/register}" class="header_link">Zarejestruj się</a>
+        <a th:href="@{/login}" class="header_link">Zaloguj się</a>
+        <a th:href="@{/adminLogin}" class="header_link">Administrator</a>
+    </div>
+    <div th:if="${session.customerLogin != null}">
+        <div th:if="${session.searchH != null}">
+            <a th:href="@{/goHome}" class="header_link">Home</a>
+        </div>
+        <a th:href="@{/customerLogout}" class="header_link">Logout</a>
+        <a th:href="@{/viewCart}" class="header_link">View Cart</a>
+        <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">View Active Orders</a>
+    </div>
+</div>
+
+<div class="main_login">
+    <div class="div_login">
+        <form action="#" th:action="@{/saveCustomer}" th:object="${customer}" , method="POST">
+            <h3>Rejestracja</h3>
+            <input type="text" th:field="*{name}" placeholder="Imię" class="form_login" required><br/><br/>
+            <input type="text" th:field="*{contact}" placeholder="Numer telefonu" class="form_login" required><br/><br/>
+            <input type="text" th:field="*{email}" placeholder="Email" class="form_login" required><br/><br/>
+            <input type="text" th:field="*{password}" placeholder="Hasło" class="form_login" required><br/><br/>
+            <button type="submit" class="button_login">Zarejestruj</button>
+            <h3 th:text="${action}"></h3>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
