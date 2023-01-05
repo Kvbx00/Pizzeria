@@ -13,6 +13,8 @@ public class Purchase {
 	private int quantity;
 	private float totalcost;
 	private int productid;
+
+	private String name;
 	@OneToOne
 	private Customer customer;
 	
@@ -22,13 +24,14 @@ public class Purchase {
 	}
 
 
-	public Purchase(int id, Date dop, int quantity, float totalcost, int productid, Customer customer) {
+	public Purchase(int id, Date dop, int quantity, float totalcost, int productid, String name, Customer customer) {
 		super();
 		this.id = id;
 		this.dop = dop;
 		this.quantity = quantity;
 		this.totalcost = totalcost;
 		this.productid = productid;
+		this.name = name;
 		this.customer = customer;
 	}
 	
@@ -71,6 +74,14 @@ public class Purchase {
 
 	public void setProductid(int productid) {
 		this.productid = productid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Customer getCustomer() {

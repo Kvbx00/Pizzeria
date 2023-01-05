@@ -42,6 +42,7 @@ public class CartController {
 		int min=100;int max=999;int b = (int)(Math.random()*(max-min+1)+min);
 		cart.setId(b);
 		cart.setProductId(product.getId());
+		cart.setName(product.getName());
 		cart.setQuantity(quantity);
 		cart.setPrice(product.getPrice()*quantity);
 		cartService.saveCart(cart);
@@ -87,6 +88,7 @@ public class CartController {
 				System.out.println(date);
 				purchase.setCustomer(customer);
 				purchase.setProductid(cl.getProductId());
+				purchase.setName(cl.getName());
 				purchase.setQuantity(cl.getQuantity());
 				purchase.setTotalcost(cl.getPrice());
 				purchaseService.addPurchase(purchase);

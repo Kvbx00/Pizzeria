@@ -27,14 +27,14 @@
         <table class="table_menu">
             <thead>
             <tr>
-                <th class="admin_th">Id produktu</th>
+                <th class="admin_th">Nazwa produktu</th>
                 <th class="admin_th">Ilość</th>
                 <th class="admin_th">Cena</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="cart : ${cartList}">
-                <td th:text="${cart.productId}" class="admin_td"></td>
+                <td th:text="${cart.name}" class="admin_td"></td>
                 <td th:text="${cart.quantity}" class="admin_td"></td>
                 <td th:text="${cart.price}" class="admin_td"></td>
             </tr>

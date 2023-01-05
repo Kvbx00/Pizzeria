@@ -2,6 +2,7 @@ package com.pizzeriaRestaurant.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import com.pizzeriaRestaurant.model.Product;
 
 @Entity
 public class Cart {
@@ -9,6 +10,8 @@ public class Cart {
 	@Id
 	private int id;
 	private int productId;
+
+	private String name;
 	private int quantity;
 	private float price;
 	
@@ -16,10 +19,11 @@ public class Cart {
 		super();
 	}
 	
-	public Cart(int id, int productId, int quantity, float price) {
+	public Cart(int id, int productId, String name, int quantity, float price) {
 		super();
 		this.id = id;
 		this.productId = productId;
+		this.name = name;
 		this.quantity = quantity;
 		this.price = price;
 	}
@@ -36,6 +40,15 @@ public class Cart {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
