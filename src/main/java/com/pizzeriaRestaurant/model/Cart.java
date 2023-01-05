@@ -10,19 +10,17 @@ public class Cart {
 	private int id;
 	private int productId;
 	private int quantity;
-	private float size;
 	private float price;
 	
 	public Cart() {
 		super();
 	}
 	
-	public Cart(int id, int productId, int quantity, float size, float price) {
+	public Cart(int id, int productId, int quantity, float price) {
 		super();
 		this.id = id;
 		this.productId = productId;
 		this.quantity = quantity;
-		this.size = size;
 		this.price = price;
 	}
 
@@ -43,12 +41,6 @@ public class Cart {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-	public float getSize() {
-		return size;
-	}
-	public void setSize(float size) {
-		this.size = size;
 	}
 	public float getPrice() {
 		return price;

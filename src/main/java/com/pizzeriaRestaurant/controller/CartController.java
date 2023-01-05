@@ -36,7 +36,7 @@ public class CartController {
 		return "redirect:/viewCart";
 	}
 	@PostMapping("/confirmCart")
-	public String addToCart(@RequestParam("size") float size,@RequestParam("quantity") int quantity,HttpSession session) {
+	public String addToCart(@RequestParam("quantity") int quantity,HttpSession session) {
 		Cart cart = new Cart();
 		Product product = (Product) session.getAttribute("product");
 		int min=100;int max=999;int b = (int)(Math.random()*(max-min+1)+min);
@@ -44,7 +44,6 @@ public class CartController {
 		cart.setProductId(product.getId());
 		cart.setQuantity(quantity);
 		cart.setPrice(product.getPrice()*quantity);
-		cart.setSize(size);
 		cartService.saveCart(cart);
 		session.setAttribute("action", "Produkt został dodany do koszyka");
 		float temp=0;

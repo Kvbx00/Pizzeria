@@ -9,7 +9,6 @@ import java.sql.Date;
 public class Purchase {
 	@Id
 	private int id;
-	private float size;
 	private Date dop;
 	private int quantity;
 	private float totalcost;
@@ -23,10 +22,9 @@ public class Purchase {
 	}
 
 
-	public Purchase(int id, float size, Date dop, int quantity, float totalcost, int productid, Customer customer) {
+	public Purchase(int id, Date dop, int quantity, float totalcost, int productid, Customer customer) {
 		super();
 		this.id = id;
-		this.size = size;
 		this.dop = dop;
 		this.quantity = quantity;
 		this.totalcost = totalcost;
@@ -41,14 +39,6 @@ public class Purchase {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public float getSize() {
-		return size;
-	}
-
-	public void setSize(float size) {
-		this.size = size;
 	}
 
 	public Date getDop() {
