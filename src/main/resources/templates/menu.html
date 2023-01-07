@@ -8,11 +8,12 @@
 
 <div class="header">
   <div th:if="${session.customerLogin == null}">
+    <a th:href="@{/}" class="header_link_left">Saproi Solari</a>
     <a th:href="@{/register}" class="header_link">Zarejestruj się</a>
     <a th:href="@{/login}" class="header_link">Zaloguj się</a>
-    <a th:href="@{/adminLogin}" class="header_link">Administrator</a>
   </div>
   <div th:if="${session.customerLogin != null}">
+    <a th:href="@{/}" class="header_link_left">Saproi Solari</a>
     <a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
     <a th:href="@{/viewCart}" class="header_link">Koszyk</a>
     <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>
@@ -29,7 +30,8 @@
         <td th:text="${product.name}" class="admin_td"/>
         <td th:text="${product.description}" class="admin_td"/>
         <td th:text="${product.price} + ' zł'" class="admin_td"/>
-        <td class="admin_td"><a th:href="@{/addCart/{id}(id=${product.id})}">Dodaj do koszyka</a></td>
+        <div th:if="${session.customerLogin != null}">
+        <td class="admin_td"><a th:href="@{/addCart/{id}(id=${product.id})}">Dodaj do koszyka</a></td></div>
       </tr>
       </thead>
     </table>

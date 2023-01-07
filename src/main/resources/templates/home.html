@@ -8,12 +8,13 @@
 
 <div class="header">
     <div th:if="${session.customerLogin == null}">
+        <a th:href="@{/}" class="header_link_left">Saproi Solari</a>
         <a th:href="@{/register}" class="header_link">Zarejestruj się</a>
         <a th:href="@{/login}" class="header_link">Zaloguj się</a>
-        <a th:href="@{/adminLogin}" class="header_link">Administrator</a>
         <a th:href="@{/menu}" class="header_link">Menu</a>
     </div>
     <div th:if="${session.customerLogin != null}">
+        <a th:href="@{/}" class="header_link_left">Saproi Solari</a>
         <a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
         <a th:href="@{/viewCart}" class="header_link">Koszyk</a>
         <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>

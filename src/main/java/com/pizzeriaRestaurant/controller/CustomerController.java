@@ -2,6 +2,7 @@ package com.pizzeriaRestaurant.controller;
 
 import com.pizzeriaRestaurant.model.Customer;
 import com.pizzeriaRestaurant.model.Purchase;
+import com.pizzeriaRestaurant.service.AdminService;
 import com.pizzeriaRestaurant.service.CartService;
 import com.pizzeriaRestaurant.service.CustomerService;
 import com.pizzeriaRestaurant.service.PurchaseService;
@@ -21,6 +22,9 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+
+	@Autowired
+	private AdminService adminService;
 
 	@Autowired
 	private PurchaseService purchaseService;
@@ -65,6 +69,10 @@ public class CustomerController {
 	public String verifyLogin(@RequestParam(name = "email") String email,
 			@RequestParam(name = "password") String password, HttpSession session, Model model) {
 		if (!email.isEmpty() || !password.isEmpty()) {
+			if(adminService.loginVerify(email,password)) {
+				session.setAttribute("uname", email);
+				return "adminDashboard";
+			}
 			if (customerService.loginVerify(email, password)) {
 				session.setAttribute("customerLogin", email);
 				Customer customer = customerService.getCustomer(email);

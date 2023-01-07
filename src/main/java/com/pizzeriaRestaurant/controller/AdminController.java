@@ -17,24 +17,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@PostMapping("/verifyLogin")
-	public String verifyLogin(@RequestParam(name="username") String username,@RequestParam(name="password") String password,HttpSession session,Model model) {
-		if(!username.isEmpty() || !password.isEmpty()) {
-			if(adminService.loginVerify(username,password)) {
-				session.setAttribute("uname", username);
-				return "adminDashboard";
-			}
-			else {
-				model.addAttribute("action","Nazwa użytkownika lub hasło są nieprawidłowe");
-				return "admin_login";
-			}
-		}else {
-			model.addAttribute("action", "Pola nie mogą być puste");
-			return "admin_login";
-		}
-		
-	}
-	
 	@GetMapping("/getDashboard")
 	public String getDashboard() {
 		return "adminDashboard";

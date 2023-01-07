@@ -83,13 +83,6 @@ public class MainApp {
 		model.addAttribute("customer", customer);
 		return "customer_login";
 	}
-		
-	@GetMapping("/adminLogin")
-	public String adminLogin(Model model) {
-		Admin admin = new Admin();
-		model.addAttribute("admin",admin);
-		return "admin_login";
-	}
 	
 	@GetMapping("/addCart/{id}")
 	public String selectProduct(@PathVariable("id") int id,HttpSession session,Model model) {

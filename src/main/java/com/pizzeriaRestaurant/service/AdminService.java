@@ -11,13 +11,13 @@ public class AdminService {
 	@Autowired
 	private AdminRepository adminRepository;
 	
-	public Admin getAdmin(String username) {
-		return adminRepository.findByUsername(username);
+	public Admin getAdmin(String email) {
+		return adminRepository.findByEmail(email);
 	}
 
-	public boolean loginVerify(String username, String password) {
-		Admin admin = adminRepository.findByUsername(username);
-        if (admin!= null && admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+	public boolean loginVerify(String email, String password) {
+		Admin admin = adminRepository.findByEmail(email);
+        if (admin!= null && admin.getEmail().equals(email) && admin.getPassword().equals(password)) {
             return true;
         }
         return false;

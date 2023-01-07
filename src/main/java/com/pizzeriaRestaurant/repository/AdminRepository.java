@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface AdminRepository extends JpaRepository<Admin,String>{
-	Admin findByUsername(String username);
+	Admin findByEmail(String email);
 	
-	@Query(value="SELECT username FROM Admin",nativeQuery=true)
+	@Query(value="SELECT email FROM Admin",nativeQuery=true)
 	public List<String> findUsenames();
 }
