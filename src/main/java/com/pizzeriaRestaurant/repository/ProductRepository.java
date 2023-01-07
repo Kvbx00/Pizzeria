@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	Product findById(int id);
 	
-	@Query("Select id from Product where name Like %?1%")
+	@Query("Select id from Product where category Like %?1%")
 	List<Integer> getByCategory(String keyword);
 	
 	@Query("SELECT p FROM Product p WHERE p.description LIKE %?1%"
