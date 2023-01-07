@@ -1,5 +1,7 @@
 package com.pizzeriaRestaurant.model;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,6 +11,7 @@ public class Customer {
     private String email;
     private String name;
     private String password;
+
     private Integer contact;
 
     public Customer() {

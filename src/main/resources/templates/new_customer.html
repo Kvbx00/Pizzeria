@@ -29,7 +29,7 @@
         <form action="#" th:action="@{/saveCustomer}" th:object="${customer}" , method="POST">
             <h3>Rejestracja</h3>
             <input type="text" th:field="*{name}" placeholder="Imię" class="form_login" required><br/><br/>
-            <input type="text" th:field="*{contact}" placeholder="Numer telefonu" class="form_login" required><br/><br/>
+            <input type="number" th:field="*{contact}" placeholder="Numer telefonu" class="form_login" required><br/><br/>
             <input type="text" th:field="*{email}" placeholder="Email" class="form_login" required><br/><br/>
             <input type="text" th:field="*{password}" placeholder="Hasło" class="form_login" required><br/><br/>
             <button type="submit" class="button_login">Zarejestruj</button>
