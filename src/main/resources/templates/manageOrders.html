@@ -14,12 +14,12 @@
 <div class="menu_container">
     <div class="menu_middle">
         <h2>Lista zamówień</h2>
-        <form th:action="@{/searchPurchaseDate}" method="POST">
+        <form th:action="@{/searchOrdersDate}" method="POST">
             <input type="date" name="keyword" Placeholder="YYYY-MM-DD" class="form_admin">
             <button type="submit" class="admin_button_add">Szukaj</button>
         </form>
 
-        <form th:action="@{/searchPurchaseCategory}" method="POST">
+        <form th:action="@{/searchOrdersCategory}" method="POST">
             <input type="text" name="keyword" Placeholder="Wyszukaj produkt" class="form_admin">
             <button type="submit" class="admin_button_add">Szukaj</button>
         </form>
@@ -39,15 +39,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="purchase : ${purchases}">
-                <td th:text="${purchase.id}" class="admin_td"></td>
-                <td th:text="${purchase.productid}" class="admin_td"></td>
-                <td th:text="${purchase.date}" class="admin_td"></td>
-                <td th:text="${purchase.quantity}" class="admin_td"></td>
-                <td th:text="${purchase.totalcost}" class="admin_td"></td>
-                <td th:text="${purchase.customer.email}" class="admin_td"></td>
-                <td th:text="${purchase.customer.name}" class="admin_td"></td>
-                <td class="admin_td"><a th:href="@{/deletePurchase/{id}(id=${purchase.id})}">Usuń</a></td>
+            <tr th:each="orders : ${orders}">
+                <td th:text="${orders.id}" class="admin_td"></td>
+                <td th:text="${orders.productid}" class="admin_td"></td>
+                <td th:text="${orders.date}" class="admin_td"></td>
+                <td th:text="${orders.quantity}" class="admin_td"></td>
+                <td th:text="${orders.totalcost}" class="admin_td"></td>
+                <td th:text="${orders.customer.email}" class="admin_td"></td>
+                <td th:text="${orders.customer.name}" class="admin_td"></td>
+                <td class="admin_td"><a th:href="@{/deleteOrders/{id}(id=${orders.id})}">Usuń</a></td>
             </tr>
             </tbody>
         </table>

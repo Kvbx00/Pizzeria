@@ -2,7 +2,7 @@ package com.pizzeriaRestaurant.controller;
 
 import com.pizzeriaRestaurant.model.*;
 import com.pizzeriaRestaurant.service.ProductService;
-import com.pizzeriaRestaurant.service.PurchaseService;
+import com.pizzeriaRestaurant.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class MainApp {
 	private ProductService productService;
 	
 	@Autowired
-	private PurchaseService purchaseService;
+	private OrdersService ordersService;
 	
 	@GetMapping("/")
 	public String viewHomePage(Model model,HttpSession session) {
@@ -99,9 +99,9 @@ public class MainApp {
 	
 	@GetMapping("/viewOrders/{email}")
 	public String customerOrders(@PathVariable(name = "email") String email, Model model,HttpSession session) {
-		List<Purchase> sPurchase = purchaseService.getByEmail(email);
-		if(!sPurchase.isEmpty()) {
-		model.addAttribute("sPurchase", sPurchase);
+		List<Orders> sOrders = ordersService.getByEmail(email);
+		if(!sOrders.isEmpty()) {
+		model.addAttribute("sOrders", sOrders);
 		return "ViewOrders";
 		}else {
 			session.setAttribute("action", "Brak zamówień");

@@ -29,14 +29,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="purchase : ${sPurchase}">
-                <td th:text="${purchase.id}" class="admin_td"></td>
-                <td th:text="${purchase.productid}" class="admin_td"></td>
-                <td th:text="${purchase.date}" class="admin_td"></td>
-                <td th:text="${purchase.quantity}" class="admin_td"></td>
-                <td th:text="${purchase.totalcost}" class="admin_td"></td>
-                <td th:text="${purchase.customer.email}" class="admin_td"></td>
-                <td th:text="${purchase.customer.name}" class="admin_td"></td>
+            <tr th:each="orders : ${sOrders}">
+                <td th:text="${orders.id}" class="admin_td"></td>
+                <td th:text="${orders.productid}" class="admin_td"></td>
+                <td th:text="${orders.date}" class="admin_td"></td>
+                <td th:text="${orders.quantity}" class="admin_td"></td>
+                <td th:text="${orders.totalcost}" class="admin_td"></td>
+                <td th:text="${orders.customer.email}" class="admin_td"></td>
+                <td th:text="${orders.customer.name}" class="admin_td"></td>
             </tr>
             </tbody>
         </table>

@@ -1,11 +1,11 @@
 package com.pizzeriaRestaurant.controller;
 
 import com.pizzeriaRestaurant.model.Customer;
-import com.pizzeriaRestaurant.model.Purchase;
+import com.pizzeriaRestaurant.model.Orders;
 import com.pizzeriaRestaurant.service.AdminService;
 import com.pizzeriaRestaurant.service.CartService;
 import com.pizzeriaRestaurant.service.CustomerService;
-import com.pizzeriaRestaurant.service.PurchaseService;
+import com.pizzeriaRestaurant.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class CustomerController {
 	private AdminService adminService;
 
 	@Autowired
-	private PurchaseService purchaseService;
+	private OrdersService ordersService;
 	
 	@Autowired
 	private CartService cartService;
@@ -114,10 +114,10 @@ public class CustomerController {
 
 	@GetMapping("/customerOrders/{email}")
 	public String customerOrders(@PathVariable(name = "email") String email, Model model,HttpSession session) {
-		List<Purchase> sPurchase = purchaseService.getByEmail(email);
-		if(!sPurchase.isEmpty()) {
-		model.addAttribute("sPurchase", sPurchase);
-		return "customerPurchase";
+		List<Orders> sOrders = ordersService.getByEmail(email);
+		if(!sOrders.isEmpty()) {
+		model.addAttribute("sOrders", sOrders);
+		return "customerOrders";
 		}else {
 			session.setAttribute("action", "Brak zamówień");
 			return "redirect:/manageCustomer";

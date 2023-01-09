@@ -2,11 +2,11 @@ package com.pizzeriaRestaurant.controller;
 
 import com.pizzeriaRestaurant.model.Cart;
 import com.pizzeriaRestaurant.model.Customer;
+import com.pizzeriaRestaurant.model.Orders;
 import com.pizzeriaRestaurant.model.Product;
-import com.pizzeriaRestaurant.model.Purchase;
 import com.pizzeriaRestaurant.service.CartService;
 import com.pizzeriaRestaurant.service.CustomerService;
-import com.pizzeriaRestaurant.service.PurchaseService;
+import com.pizzeriaRestaurant.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +28,7 @@ public class CartController {
 	private CustomerService customerService;
 	
 	@Autowired
-	private PurchaseService purchaseService;
+	private OrdersService ordersService;
 	
 	@ExceptionHandler(Exception.class)
 	public String handleSqlException(Exception e, HttpSession session) {
@@ -77,21 +77,21 @@ public class CartController {
 		System.out.println(pm);
 		if(pm.equals("yes")) {
 			List<Cart> cartList = cartService.getAllCart();
-			Purchase purchase = new Purchase();
+			Orders orders = new Orders();
 			String email = (String) session.getAttribute("customerLogin");
 			Customer customer = customerService.getCustomer(email);
 			for(Cart cl:cartList) {
 				java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 				int min=100000;int max=999999;int b = (int)(Math.random()*(max-min+1)+min);
-				purchase.setId(b);
-				purchase.setDate(date);
+				orders.setId(b);
+				orders.setDate(date);
 				System.out.println(date);
-				purchase.setCustomer(customer);
-				purchase.setProductid(cl.getProductId());
-				purchase.setName(cl.getName());
-				purchase.setQuantity(cl.getQuantity());
-				purchase.setTotalcost(cl.getPrice());
-				purchaseService.addPurchase(purchase);
+				orders.setCustomer(customer);
+				orders.setProductid(cl.getProductId());
+				orders.setName(cl.getName());
+				orders.setQuantity(cl.getQuantity());
+				orders.setTotalcost(cl.getPrice());
+				ordersService.addOrders(orders);
 			}
 		session.setAttribute("action", "Produkty zostały pomyślnie zamówione");
 		return "redirect:/menu";

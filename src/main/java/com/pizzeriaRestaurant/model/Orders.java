@@ -6,7 +6,7 @@ import javax.persistence.OneToOne;
 import java.sql.Date;
 
 @Entity
-public class Purchase {
+public class Orders {
 	@Id
 	private int id;
 	private Date date;
@@ -19,12 +19,12 @@ public class Purchase {
 	private Customer customer;
 	
 
-	public Purchase() {
+	public Orders() {
 		super();
 	}
 
 
-	public Purchase(int id, Date date, int quantity, float totalcost, int productid, String name, Customer customer) {
+	public Orders(int id, Date date, int quantity, float totalcost, int productid, String name, Customer customer) {
 		super();
 		this.id = id;
 		this.date = date;

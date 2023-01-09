@@ -97,10 +97,10 @@ INSERT INTO `product` (`id`, `category`, `description`, `name`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `purchase`
+-- Struktura tabeli dla tabeli `orders`
 --
 
-CREATE TABLE `purchase` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `dop` date DEFAULT NULL,
   `productid` int(11) NOT NULL,
@@ -111,10 +111,10 @@ CREATE TABLE `purchase` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `purchase`
+-- Zrzut danych tabeli `orders`
 --
 
-INSERT INTO `purchase` (`id`, `dop`, `productid`, `name`, `quantity`, `totalcost`, `customer_email`) VALUES
+INSERT INTO `orders` (`id`, `dop`, `productid`, `name`, `quantity`, `totalcost`, `customer_email`) VALUES
 (147794, '2023-01-05', 91343, 'Margherita', 2, 50, 'zxc@gmail.com'),
 (520027, '2023-01-05', 91343, 'Margherita', 1, 25, 'zxc@gmail.com');
 
@@ -147,9 +147,9 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `purchase`
+-- Indeksy dla tabeli `orders`
 --
-ALTER TABLE `purchase`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FKo7gdhk6inpwo1ktafs0q3wy2a` (`customer_email`);
 
@@ -158,9 +158,9 @@ ALTER TABLE `purchase`
 --
 
 --
--- Ograniczenia dla tabeli `purchase`
+-- Ograniczenia dla tabeli `orders`
 --
-ALTER TABLE `purchase`
+ALTER TABLE `orders`
   ADD CONSTRAINT `FKo7gdhk6inpwo1ktafs0q3wy2a` FOREIGN KEY (`customer_email`) REFERENCES `customer` (`email`);
 COMMIT;
 
