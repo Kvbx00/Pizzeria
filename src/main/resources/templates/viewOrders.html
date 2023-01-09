@@ -18,6 +18,7 @@
         <a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
         <a th:href="@{/viewCart}" class="header_link">Koszyk</a>
         <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>
+        <a th:href="@{/menu}" class="header_link">Menu</a>
     </div>
 </div>
 
@@ -40,7 +41,7 @@
             <tbody>
             <tr th:each="purchase : ${sPurchase}">
                 <td th:text="${purchase.name}" class="admin_td"></td>
-                <td th:text="${purchase.dop}" class="admin_td"></td>
+                <td th:text="${purchase.date}" class="admin_td"></td>
                 <td th:text="${purchase.quantity}" class="admin_td"></td>
                 <td th:text="${purchase.totalcost}" class="admin_td"></td>
                 <td th:text="${purchase.customer.email}" class="admin_td"></td>

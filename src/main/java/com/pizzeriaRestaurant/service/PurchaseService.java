@@ -28,7 +28,7 @@ public class PurchaseService {
 	}
 
 	public List<Purchase> getPurchaseByDate(Date keyword) {
-		return purchaseRepository.findByDop(keyword);
+		return purchaseRepository.findByDate(keyword);
 	}
 	
 	public List<Purchase> getPurchaseByCategory(String keyword) {

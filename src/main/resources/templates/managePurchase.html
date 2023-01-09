@@ -42,7 +42,7 @@
             <tr th:each="purchase : ${purchases}">
                 <td th:text="${purchase.id}" class="admin_td"></td>
                 <td th:text="${purchase.productid}" class="admin_td"></td>
-                <td th:text="${purchase.dop}" class="admin_td"></td>
+                <td th:text="${purchase.date}" class="admin_td"></td>
                 <td th:text="${purchase.quantity}" class="admin_td"></td>
                 <td th:text="${purchase.totalcost}" class="admin_td"></td>
                 <td th:text="${purchase.customer.email}" class="admin_td"></td>

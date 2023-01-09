@@ -84,7 +84,7 @@ public class CartController {
 				java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 				int min=100000;int max=999999;int b = (int)(Math.random()*(max-min+1)+min);
 				purchase.setId(b);
-				purchase.setDop(date);
+				purchase.setDate(date);
 				System.out.println(date);
 				purchase.setCustomer(customer);
 				purchase.setProductid(cl.getProductId());

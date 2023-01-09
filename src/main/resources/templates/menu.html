@@ -27,11 +27,11 @@
     <table class="table_menu">
       <thead>
       <tr th:each="product : ${session.productList}">
-        <td th:text="${product.name}" class="admin_td"/>
-        <td th:text="${product.description}" class="admin_td"/>
-        <td th:text="${product.price} + ' zł'" class="admin_td"/>
+        <td th:text="${product.name}" class="admin_td_left"/>
+        <td th:text="${product.description}" class="admin_td_middle"/>
+        <td th:text="${product.price} + ' zł'" class="admin_td_right"/>
         <div th:if="${session.customerLogin != null}">
-        <td class="admin_td"><a th:href="@{/addCart/{id}(id=${product.id})}">Dodaj do koszyka</a></td></div>
+        <td class="admin_td_buy"><a th:href="@{/addCart/{id}(id=${product.id})}">Dodaj do koszyka</a></td></div>
       </tr>
       </thead>
     </table>

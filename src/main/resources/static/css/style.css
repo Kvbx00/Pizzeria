@@ -82,18 +82,24 @@ body {
 }
 
 .admin_td_left{
-	width: 33%;
+	width: 20%;
 	text-align: center;
 }
 
 .admin_td_middle{
-	width: 33%;
+	width: 30%;
 	text-align: center;
 }
 
 .admin_td_right{
-	width: 33%;
+	width: 10%;
 	text-align: center;
+}
+
+.admin_td_buy{
+	width: 10%;
+	text-align: center;
+	text-decoration: none;
 }
 
 .admin_table_td{
@@ -118,8 +124,9 @@ body {
 }
 
 .admin_td{
-	font-size: 20px;
+	font-size: 18px;
 	text-align: center;
+
 }
 
 .form_admin{
