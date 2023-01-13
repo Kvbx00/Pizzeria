@@ -38,6 +38,7 @@
                 <td th:text="${cart.name}" class="admin_td"></td>
                 <td th:text="${cart.quantity}" class="admin_td"></td>
                 <td th:text="${cart.price}" class="admin_td"></td>
+                <td class="admin_td"><a th:href="@{/deleteCartProduct/{id}(id=${cart.id})}">Usuń</a></td>
             </tr>
             </tbody>
         </table><br>
