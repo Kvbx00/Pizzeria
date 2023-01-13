@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.pizzeriaRestaurant</groupId>
-	<artifactId>pizzeriaRestaurant</artifactId>
+	<artifactId>pizzeria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pizzeriaRestaurant</name>
 	<description>Demo project for Spring Boot</description>

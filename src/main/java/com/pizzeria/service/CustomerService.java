@@ -1,7 +1,7 @@
-package com.pizzeriaRestaurant.service;
+package com.pizzeria.service;
 
-import com.pizzeriaRestaurant.model.Customer;
-import com.pizzeriaRestaurant.repository.CustomerRepository;
+import com.pizzeria.model.Customer;
+import com.pizzeria.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

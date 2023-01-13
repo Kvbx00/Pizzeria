@@ -1,13 +1,13 @@
-package com.pizzeriaRestaurant;
+package com.pizzeria;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PizzeriaRestaurantApplication {
+public class PizzeriaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PizzeriaRestaurantApplication.class, args);
+		SpringApplication.run(PizzeriaApplication.class, args);
 	}
 
 }

@@ -1,6 +1,6 @@
-package com.pizzeriaRestaurant.repository;
+package com.pizzeria.repository;
 
-import com.pizzeriaRestaurant.model.Product;
+import com.pizzeria.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

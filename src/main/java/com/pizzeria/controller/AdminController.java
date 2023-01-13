@@ -1,7 +1,7 @@
-package com.pizzeriaRestaurant.controller;
+package com.pizzeria.controller;
 
-import com.pizzeriaRestaurant.model.Admin;
-import com.pizzeriaRestaurant.service.AdminService;
+import com.pizzeria.model.Admin;
+import com.pizzeria.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

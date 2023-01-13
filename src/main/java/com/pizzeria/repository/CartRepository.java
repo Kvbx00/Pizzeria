@@ -1,6 +1,6 @@
-package com.pizzeriaRestaurant.repository;
+package com.pizzeria.repository;
 
-import com.pizzeriaRestaurant.model.Cart;
+import com.pizzeria.model.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CartRepository extends JpaRepository<Cart, Integer>{

@@ -1,8 +1,8 @@
-package com.pizzeriaRestaurant.service;
+package com.pizzeria.service;
 
 
-import com.pizzeriaRestaurant.model.Admin;
-import com.pizzeriaRestaurant.repository.AdminRepository;
+import com.pizzeria.model.Admin;
+import com.pizzeria.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service

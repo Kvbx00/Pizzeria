@@ -1,6 +1,4 @@
-package com.pizzeriaRestaurant.model;
-
-import org.springframework.format.annotation.NumberFormat;
+package com.pizzeria.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

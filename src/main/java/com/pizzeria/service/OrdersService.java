@@ -1,8 +1,8 @@
-package com.pizzeriaRestaurant.service;
+package com.pizzeria.service;
 
-import com.pizzeriaRestaurant.model.Orders;
-import com.pizzeriaRestaurant.repository.ProductRepository;
-import com.pizzeriaRestaurant.repository.OrdersRepository;
+import com.pizzeria.model.Orders;
+import com.pizzeria.repository.ProductRepository;
+import com.pizzeria.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

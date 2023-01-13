@@ -1,12 +1,12 @@
-package com.pizzeriaRestaurant.controller;
+package com.pizzeria.controller;
 
-import com.pizzeriaRestaurant.model.Cart;
-import com.pizzeriaRestaurant.model.Customer;
-import com.pizzeriaRestaurant.model.Orders;
-import com.pizzeriaRestaurant.model.Product;
-import com.pizzeriaRestaurant.service.CartService;
-import com.pizzeriaRestaurant.service.CustomerService;
-import com.pizzeriaRestaurant.service.OrdersService;
+import com.pizzeria.model.Cart;
+import com.pizzeria.model.Customer;
+import com.pizzeria.model.Orders;
+import com.pizzeria.model.Product;
+import com.pizzeria.service.CartService;
+import com.pizzeria.service.CustomerService;
+import com.pizzeria.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

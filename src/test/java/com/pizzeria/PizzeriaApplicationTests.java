@@ -1,10 +1,10 @@
-package com.pizzeriaRestaurant;
+package com.pizzeria;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PizzeriaRestaurantApplicationTests {
+class PizzeriaApplicationTests {
 
 	@Test
 	void contextLoads() {

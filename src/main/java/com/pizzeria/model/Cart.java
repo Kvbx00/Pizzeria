@@ -1,8 +1,7 @@
-package com.pizzeriaRestaurant.model;
+package com.pizzeria.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import com.pizzeriaRestaurant.model.Product;
 
 @Entity
 public class Cart {
