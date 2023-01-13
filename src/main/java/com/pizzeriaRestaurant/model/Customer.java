@@ -9,13 +9,12 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class Customer {
     @Id
+    @Pattern(regexp = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$", message = "Nieprawidłowy adres email")
     private String email;
     private String name;
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*+=])(?=\\S+$).{8,}$", message = "Hasło musi się składać z min 8 znaków, posiadać dużą, małą literę, cyfrę oraz znak specjalny")
     private String password;
-
     private Integer contact;
-
     private String address;
 
     public Customer() {
