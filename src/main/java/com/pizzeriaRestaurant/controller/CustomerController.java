@@ -9,9 +9,11 @@ import com.pizzeriaRestaurant.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -39,7 +41,7 @@ public class CustomerController {
 	}
 
 	@PostMapping("/saveCustomer")
-	public String saveCustomer(Customer customer, Model model, HttpSession session) {
+	public String saveCustomer(@Valid Customer customer, BindingResult bindingResult, Model model, HttpSession session) {
 		List<String> cEmails = customerService.customerEmails();
 		boolean notExist = true;
 		for(String e : cEmails) {
@@ -47,22 +49,21 @@ public class CustomerController {
 				notExist=false;
 		}
 		if(notExist) {
-			if (validate(customer.getEmail())) {
+			if ((!bindingResult.hasErrors()) && validate(customer.getEmail())) {
 				customerService.saveCustomer(customer);
 				model.addAttribute("action", "Rejestracja pomyślna, zaloguj się.");
 				session.setAttribute("customerLogin", customer.getEmail());
 				session.setAttribute("custName", customer.getName());
 				cartService.cartDeleteAll();
 				return "redirect:/";
-			} else {
-				model.addAttribute("action", "Email jest niepoprawny.");
+			}else {
 				return "new_customer";
 			}
 		}else {
 			session.setAttribute("action", "Wprowadzony email już istnieje, zaloguj się.");
 			return "redirect:/";
 		}
-		
+
 	}
 
 	@PostMapping("/verifyCustLogin")

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
 
@@ -29,11 +30,31 @@
             <thead>
             <tr>
                 <th class="admin_th">Id zamówienia</th>
-                <th class="admin_th">Id produktu</th>
-                <th class="admin_th">Data zamówienia</th>
+                <th class="admin_th">
+                    Id produktu
+                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=productid&sortDir=' + ${reverseSortDir}}">
+                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
+                    </a>
+                </th>
+                <th class="admin_th">
+                    Data zamówienia
+                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">
+                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
+                    </a>
+                </th>
                 <th class="admin_th">Ilość</th>
-                <th class="admin_th">Koszt</th>
-                <th class="admin_th">Email użytkownika</th>
+                <th class="admin_th">
+                    Koszt
+                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=totalcost&sortDir=' + ${reverseSortDir}}">
+                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
+                    </a>
+                </th>
+                <th class="admin_th">
+                    Email użytkownika
+                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=customer.email&sortDir=' + ${reverseSortDir}}">
+                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
+                    </a>
+                </th>
                 <th class="admin_th">Imię</th>
                 <th class="admin_th">Akcje</th>
             </tr>
@@ -51,6 +72,20 @@
             </tr>
             </tbody>
         </table>
+
+        <div th:if="${totalPages > 1}">
+            <div>
+                <div>
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a th:if="${currentPage != i}"
+                           th:href="@{'/manageOrders/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]
+                        </a>
+                            <span th:unless="${currentPage != i}">[[${i}]]</span>&nbsp; &nbsp;
+                    </span>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>

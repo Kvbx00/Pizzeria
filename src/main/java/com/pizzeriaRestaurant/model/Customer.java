@@ -4,13 +4,16 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Customer {
     @Id
     private String email;
     private String name;
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*+=])(?=\\S+$).{8,}$", message = "Hasło musi się składać z min 8 znaków, posiadać dużą, małą literę, cyfrę oraz znak specjalny")
     private String password;
+
     private Integer contact;
 
     private String address;
