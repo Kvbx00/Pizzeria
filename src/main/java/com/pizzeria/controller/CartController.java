@@ -96,11 +96,12 @@ public class CartController {
 				orders.setQuantity(cl.getQuantity());
 				orders.setTotalcost(cl.getPrice());
 				ordersService.addOrders(orders);
+				cartService.cartDeleteAll();
 			}
 		session.setAttribute("action", "Produkty zostały pomyślnie zamówione");
 		return "redirect:/menu";
 		}else {
-			session.setAttribute("action", "Wykonaj płatność przed sfinalizowaniem zamówienia");
+			session.setAttribute("action", "");
 			return "redirect:/viewCart";
 		}	
 	}

@@ -46,7 +46,7 @@
         <form th:action="@{/buyNow}" , method="POST">
             <input type="radio" name="pm" id="yes" value="yes" checked hidden/>
             <input type="radio" name="pm" id="no" value="no" hidden/>
-            <span class="admin_td" th:text=" 'Kwota twojego zamówienia: ' + ${session.sessionCost} + 'zł'"></span>
+            <span class="admin_td" th:text=" 'Kwota twojego zamówienia to: ' + ${#aggregates.sum(cartList.![price])}"></span>
             <button class="admin_button_add" type="submit" style="margin-left: 10px">Zamów</button>
         </form>
     </div>
