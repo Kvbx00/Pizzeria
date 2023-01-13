@@ -11,19 +11,21 @@ public class Customer {
     private String email;
     private String name;
     private String password;
-
     private Integer contact;
+
+    private String address;
 
     public Customer() {
         super();
     }
 
-    public Customer(String email, String name, String password, Integer contact) {
+    public Customer(String email, String name, String password, Integer contact, String address) {
         super();
         this.email = email;
         this.name = name;
         this.password = password;
         this.contact = contact;
+        this.address = address;
     }
 
     public String getEmail() {
@@ -56,5 +58,13 @@ public class Customer {
 
     public void setContact(Integer contact) {
         this.contact = contact;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

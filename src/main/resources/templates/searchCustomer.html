@@ -22,6 +22,7 @@
                 <th class="admin_th">Email</th>
                 <th class="admin_th">Imię</th>
                 <th class="admin_th">Telefon</th>
+                <th class="admin_th">Adres zamieszkania</th>
                 <th class="admin_th">Akcje</th>
             </tr>
             </thead>
@@ -30,6 +31,7 @@
                 <td th:text="${customer.email}" class="admin_td"></td>
                 <td th:text="${customer.name}" class="admin_td"></td>
                 <td th:text="${customer.contact}" class="admin_td"></td>
+                <td th:text="${customer.address}" class="admin_td"></td>
                 <td class="admin_td"><a th:href="@{/deleteCustomer/{email}(email=${customer.email})}">Usuń</a>
                     <a th:href="@{/customerOrders/{email}(email=${customer.email})}">Zamówienia użytkownika</a></td>
             </tr>
