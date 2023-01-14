@@ -106,9 +106,9 @@ public class CustomerController {
 		return "manageCustomer";
 	}
 
-	@GetMapping("/deleteCustomer/{email}")
-	public String deleteCustomer(@PathVariable(name = "email") String email, Model model) {
-		customerService.deleteCustomer(email);
+	@GetMapping("/deleteCustomer/{id}")
+	public String deleteCustomer(@PathVariable("id") int id, Model model) {
+		customerService.deleteCustomer(id);
 		model.addAttribute("action", "Użytkownik został pomyślnie usunięty");
 		return "redirect:/manageCustomer";
 	}

@@ -1,12 +1,14 @@
 package com.pizzeria.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 @Entity
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",unique=true, nullable = false)
+    private int id;
     @Pattern(regexp = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$", message = "Nieprawidłowy adres email")
     private String email;
     private String name;
@@ -19,13 +21,22 @@ public class Customer {
         super();
     }
 
-    public Customer(String email, String name, String password, Integer contact, String address) {
+    public Customer(Integer id, String email, String name, String password, Integer contact, String address) {
         super();
+        this.id = id;
         this.email = email;
         this.name = name;
         this.password = password;
         this.contact = contact;
         this.address = address;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getEmail() {

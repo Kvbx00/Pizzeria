@@ -29,7 +29,6 @@ public class CartController {
 	
 	@ExceptionHandler(Exception.class)
 	public String handleSqlException(Exception e, HttpSession session) {
-		session.setAttribute("action", "Wybierz płatność przez zakupem");
 		return "redirect:/viewCart";
 	}
 	@PostMapping("/confirmCart")
@@ -77,9 +76,7 @@ public class CartController {
 	}
 
 	@PostMapping("/buyNow")
-	public String buyProducts(@RequestParam("pm") String pm, HttpSession session) {
-		System.out.println(pm);
-		if(pm.equals("yes")) {
+	public String buyProducts(HttpSession session) {
 			List<Cart> cartList = cartService.getAllCart();
 			Orders orders = new Orders();
 			String email = (String) session.getAttribute("customerLogin");
@@ -100,10 +97,6 @@ public class CartController {
 			}
 		session.setAttribute("action", "Produkty zostały pomyślnie zamówione");
 		return "redirect:/menu";
-		}else {
-			session.setAttribute("action", "");
-			return "redirect:/viewCart";
-		}	
 	}
 		
 }

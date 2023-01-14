@@ -36,7 +36,7 @@
                 <td th:text="${customer.name}" class="admin_td"></td>
                 <td th:text="${customer.contact}" class="admin_td"></td>
                 <td th:text="${customer.address}" class="admin_td"></td>
-                <td class="admin_td"><a th:href="@{/deleteCustomer/{email}(email=${customer.email})}">Usuń</a> <a
+                <td class="admin_td"><a th:href="@{/deleteCustomer/{id}(id=${customer.id})}">Usuń</a> <a
                         th:href="@{/customerOrders/{email}(email=${customer.email})}">Zamówienia użytkownika</a></td>
             </tr>
             </tbody>

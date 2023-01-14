@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface CustomerRepository extends JpaRepository<Customer, String> {
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	Customer findByEmail(String email);
 	
@@ -17,4 +17,5 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 	
 	@Query("SELECT c.email from Customer c")
 	public List<String> customerEmails();
+
 }

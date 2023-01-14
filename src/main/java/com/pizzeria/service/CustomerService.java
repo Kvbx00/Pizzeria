@@ -34,8 +34,8 @@ public class CustomerService {
 		return customerRepository.findAll();
 	}
 
-	public void deleteCustomer(String email) {
-		customerRepository.deleteById(email);
+	public void deleteCustomer(int id) {
+		customerRepository.deleteById(id);
 	}
 
 	public List<Customer> searchCustomer(String keyword) {
