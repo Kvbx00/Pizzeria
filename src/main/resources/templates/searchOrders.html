@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html lang="pl_PL" xmlns:th="http://www.thymeleaf.org" class="menu_html">
 <head>
-	<meta charset="UTF-8">
-	<title>Admin</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 
 <div class="header">
-		<a th:href="@{/manageOrders}" class="header_link">Powrót do zarządzania zamówieniami</a>
-	</div>
+    <a th:href="@{/manageOrders}" class="header_link">Powrót do zarządzania zamówieniami</a>
+</div>
 
 <div class="menu_container">
-	<div class="menu_middle">
-		<h2>Lista zamówień</h2>
-		<h3 th:text="${action}"></h3>
-		<span th:text="${session.action}"></span>
-		<table class="table_menu">
-			<thead>
-				<tr>
-					<th class="admin_th">Id zamówienia</th>
-					<th class="admin_th">Id produktu</th>
-					<th class="admin_th">Data zamówienia</th>
-					<th class="admin_th">Ilość</th>
-					<th class="admin_th">Koszt</th>
-					<th class="admin_th">Email użytkownika</th>
-					<th class="admin_th">Imię</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="orders : ${sOrders}">
-					<td th:text="${orders.id}" class="admin_td"></td>
-					<td th:text="${orders.productid}" class="admin_td"></td>
-					<td th:text="${orders.date}" class="admin_td"></td>
-					<td th:text="${orders.quantity}" class="admin_td"></td>
-					<td th:text="${orders.totalcost}" class="admin_td"></td>
-					<td th:text="${orders.customer.email}" class="admin_td"></td>
-					<td th:text="${orders.customer.name}" class="admin_td"></td>
-				</tr>
-			</tbody>
-
-		</table>
-	</div>
+    <div class="menu_middle">
+        <h2>Lista zamówień</h2>
+        <h3 th:text="${action}"></h3>
+        <span th:text="${session.action}"></span>
+        <table class="table_menu">
+            <thead>
+            <tr>
+                <th class="admin_th_orders">Id zamówienia</th>
+                <th class="admin_th_orders">Data zamówienia</th>
+                <th class="admin_th_orders">Email użytkownika</th>
+                <th class="admin_th_orders">Imię</th>
+                <th class="admin_th_orders">Koszt</th>
+                <th class="admin_th_orders">Nazwa produktów</th>
+                <th class="admin_th_orders">Ilość</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}" class="admin_td_orders"></td>
+                <td th:text="${order.date}" class="admin_td_orders"></td>
+                <td th:text="${order.customer.email}" class="admin_td_orders"></td>
+                <td th:text="${order.customer.name}" class="admin_td_orders"></td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="${od.totalcost}  + ' zł'"></a>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="${od.name}"></a>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="'x' + ${od.quantity}"></a>
+                        <br>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

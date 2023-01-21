@@ -16,12 +16,12 @@
     <div class="menu_middle">
         <h2>Lista zamówień</h2>
         <form th:action="@{/searchOrdersDate}" method="POST">
-            <input type="date" name="keyword" Placeholder="YYYY-MM-DD" class="form_admin">
+            <input type="date" name="name" Placeholder="YYYY-MM-DD" class="form_admin">
             <button type="submit" class="admin_button_add">Szukaj</button>
         </form>
 
-        <form th:action="@{/searchOrdersCategory}" method="POST">
-            <input type="text" name="keyword" Placeholder="Wyszukaj produkt" class="form_admin">
+        <form th:action="@{/searchOrders}" method="get">
+            <input type="text" name="name" Placeholder="Wyszukaj produkt" class="form_admin">
             <button type="submit" class="admin_button_add">Szukaj</button>
         </form>
         <h3 th:text="${action}"></h3>
@@ -29,62 +29,44 @@
         <table class="table_menu">
             <thead>
             <tr>
-                <th class="admin_th">Id zamówienia</th>
-                <th class="admin_th">
-                    Id produktu
-                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=productid&sortDir=' + ${reverseSortDir}}">
-                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
-                    </a>
-                </th>
-                <th class="admin_th">
-                    Data zamówienia
-                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">
-                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
-                    </a>
-                </th>
-                <th class="admin_th">Ilość</th>
-                <th class="admin_th">
-                    Koszt
-                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=totalcost&sortDir=' + ${reverseSortDir}}">
-                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
-                    </a>
-                </th>
-                <th class="admin_th">
-                    Email użytkownika
-                    <a th:href="@{'/manageOrders/' + ${currentPage} + '?sortField=customer.email&sortDir=' + ${reverseSortDir}}">
-                        <i style="font-size:17px; text-decoration: none; color: black" class='fas'>&#xf160;</i>
-                    </a>
-                </th>
-                <th class="admin_th">Imię</th>
-                <th class="admin_th">Akcje</th>
+                <th class="admin_th_orders">Id zamówienia</th>
+                <th class="admin_th_orders">Data zamówienia</th>
+                <th class="admin_th_orders">Email użytkownika</th>
+                <th class="admin_th_orders">Imię</th>
+                <th class="admin_th_orders">Koszt</th>
+                <th class="admin_th_orders">Nazwa produktów</th>
+                <th class="admin_th_orders">Ilość</th>
+                <th class="admin_th_orders">Akcje</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="orders : ${orders}">
-                <td th:text="${orders.id}" class="admin_td"></td>
-                <td th:text="${orders.productid}" class="admin_td"></td>
-                <td th:text="${orders.date}" class="admin_td"></td>
-                <td th:text="${orders.quantity}" class="admin_td"></td>
-                <td th:text="${orders.totalcost}" class="admin_td"></td>
-                <td th:text="${orders.customer.email}" class="admin_td"></td>
-                <td th:text="${orders.customer.name}" class="admin_td"></td>
-                <td class="admin_td"><a th:href="@{/deleteOrders/{id}(id=${orders.id})}">Usuń</a></td>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}" class="admin_td_orders"></td>
+                <td th:text="${order.date}" class="admin_td_orders"></td>
+                <td th:text="${order.customer.email}" class="admin_td_orders"></td>
+                <td th:text="${order.customer.name}" class="admin_td_orders"></td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="${od.totalcost}  + ' zł'"></a>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="${od.name}"></a>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="'x' + ${od.quantity}"></a>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders"><a th:href="@{/deleteOrders/{id}(id=${order.id})}">Usuń</a></td>
             </tr>
             </tbody>
         </table>
-
-        <div th:if="${totalPages > 1}">
-            <div>
-                <div>
-                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                        <a th:if="${currentPage != i}"
-                           th:href="@{'/manageOrders/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]
-                        </a>
-                            <span th:unless="${currentPage != i}">[[${i}]]</span>&nbsp; &nbsp;
-                    </span>
-                </div>
-            </div>
-        </div>
 
     </div>
 </div>

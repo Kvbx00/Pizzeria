@@ -1,7 +1,6 @@
 package com.pizzeria.controller;
 
 import com.pizzeria.model.Customer;
-import com.pizzeria.model.Orders;
 import com.pizzeria.service.AdminService;
 import com.pizzeria.service.CartService;
 import com.pizzeria.service.CustomerService;
@@ -111,18 +110,6 @@ public class CustomerController {
 		customerService.deleteCustomer(id);
 		model.addAttribute("action", "Użytkownik został pomyślnie usunięty");
 		return "redirect:/manageCustomer";
-	}
-
-	@GetMapping("/customerOrders/{email}")
-	public String customerOrders(@PathVariable(name = "email") String email, Model model,HttpSession session) {
-		List<Orders> sOrders = ordersService.getByEmail(email);
-		if(!sOrders.isEmpty()) {
-		model.addAttribute("sOrders", sOrders);
-		return "customerOrders";
-		}else {
-			session.setAttribute("action", "Brak zamówień");
-			return "redirect:/manageCustomer";
-		}
 	}
 	
 	@PostMapping("/searchCustomer")

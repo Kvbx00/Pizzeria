@@ -17,7 +17,7 @@
         <a th:href="@{/}" class="header_link_left">Saproi Solari</a>
         <a th:href="@{/customerLogout}" class="header_link">Wyloguj się</a>
         <a th:href="@{/viewCart}" class="header_link">Koszyk</a>
-        <a th:href="@{/viewOrders/{email}(email=${session.customerLogin})}" class="header_link">Twoje zamówienia</a>
+        <a th:href="@{/viewOrders}" class="header_link">Twoje zamówienia</a>
         <a th:href="@{/menu}" class="header_link">Menu</a>
     </div>
 </div>
@@ -30,22 +30,35 @@
         <table class="table_menu">
             <thead>
             <tr>
-                <th class="admin_th">Nazwa produktu</th>
-                <th class="admin_th">Data zamówienia</th>
-                <th class="admin_th">Ilość</th>
-                <th class="admin_th">Koszt</th>
-                <th class="admin_th">Email użytkownika</th>
-                <th class="admin_th">Imię</th>
+                <th class="admin_th_orders">Id zamówienia</th>
+                <th class="admin_th_orders">Data zamówienia</th>
+                <th class="admin_th_orders">Koszt zamówienia</th>
+                <th class="admin_th_orders">Produkty</th>
+                <th class="admin_th_orders">Ilość</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="orders : ${sOrders}">
-                <td th:text="${orders.name}" class="admin_td"></td>
-                <td th:text="${orders.date}" class="admin_td"></td>
-                <td th:text="${orders.quantity}" class="admin_td"></td>
-                <td th:text="${orders.totalcost}" class="admin_td"></td>
-                <td th:text="${orders.customer.email}" class="admin_td"></td>
-                <td th:text="${orders.customer.name}" class="admin_td"></td>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}" class="admin_td_orders"></td>
+                <td th:text="${order.date}" class="admin_td_orders"></td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <span th:text="${od.totalcost} + ' zł'"></span>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="${od.name}"></a>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="'x' + ${od.quantity}"></a>
+                        <br>
+                    </span>
+                </td>
             </tr>
             </tbody>
         </table>

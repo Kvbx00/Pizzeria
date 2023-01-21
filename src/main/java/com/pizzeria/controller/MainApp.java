@@ -2,7 +2,6 @@ package com.pizzeria.controller;
 
 import com.pizzeria.model.*;
 import com.pizzeria.service.ProductService;
-import com.pizzeria.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +18,6 @@ public class MainApp {
 	
 	@Autowired
 	private ProductService productService;
-	
-	@Autowired
-	private OrdersService ordersService;
 	
 	@GetMapping("/")
 	public String viewHomePage(Model model,HttpSession session) {
@@ -96,16 +92,5 @@ public class MainApp {
 			return "addCart";
 		}
 	}
-	
-	@GetMapping("/viewOrders/{email}")
-	public String customerOrders(@PathVariable(name = "email") String email, Model model,HttpSession session) {
-		List<Orders> sOrders = ordersService.getByEmail(email);
-		if(!sOrders.isEmpty()) {
-		model.addAttribute("sOrders", sOrders);
-		return "ViewOrders";
-		}else {
-			session.setAttribute("action", "Brak zamówień");
-			return "redirect:/";
-		}
-	}
+
 }
