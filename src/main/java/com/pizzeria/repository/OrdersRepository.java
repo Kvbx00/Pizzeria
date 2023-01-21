@@ -12,7 +12,6 @@ import java.util.List;
 public interface OrdersRepository extends JpaRepository<Orders, Integer>{
     List<Orders> findByCustomer(Customer customer);
     List<Orders> findByOrderDetailsName(String name);
-
     List<Orders> findByDate(Date date);
 
 }

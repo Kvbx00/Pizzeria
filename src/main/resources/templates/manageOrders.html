@@ -31,15 +31,15 @@
             <tr>
                 <th class="admin_th_orders">Id zamówienia</th>
                 <th class="admin_th_orders">
+                    Data zamówienia
                     <a th:href="@{/manageOrders(sortBy='date',direction=${direction=='asc'?'desc':'asc'},page=0,size=${size})}">
-                        Data zamówienia
-                        <i class="fas" th:if="${sortBy=='date'}" th:class="${direction=='asc'?'fa-sort-up':'fa-sort-down'}"></i>
+                        <i style="font-size:17px; text-decoration: none; color: black" class="fas" th:class="${'fas fa-sort'}"></i>
                     </a>
                 </th>
                 <th class="admin_th_orders">
+                    Email użytkownika
                     <a th:href="@{/manageOrders(sortBy='customer.email',direction=${direction=='asc'?'desc':'asc'},page=0,size=${size})}">
-                        Email użytkownika
-                        <i class="fas" th:if="${sortBy=='customer.email'}" th:class="${direction=='asc'?'fa-sort-up':'fa-sort-down'}"></i>
+                        <i style="font-size:17px; text-decoration: none; color: black" class="fas" th:class="${'fas fa-sort'}"></i>
                     </a>
                 </th>
                 <th class="admin_th_orders">Imię</th>
@@ -77,10 +77,11 @@
             </tr>
             </tbody>
         </table>
-        <div class="pagination">
-            <a th:href="@{/manageOrders(sortBy=${sortBy},direction=${sortDirection},page=${page-1},size=${size})}" th:if="${page > 0}">Poprzednia</a>
-            <a th:href="@{/manageOrders(sortBy=${sortBy},direction=${sortDirection},page=${page+1},size=${size})}" th:if="${page < totalPages-1}">Następna</a>
-        </div>
+        <a th:href="@{/manageOrders(sortBy=${sortBy},direction=${sortDirection},page=${page-1},size=${size})}" th:if="${page > 0}">&lt;</a>
+        <a th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}" th:href="@{/manageOrders(sortBy=${sortBy},direction=${direction},page=${pageNumber},size=${size})}">
+            <span th:text="${pageNumber + 1}" th:class="${pageNumber == page} ? 'active'"></span>
+        </a>
+        <a th:href="@{/manageOrders(sortBy=${sortBy},direction=${sortDirection},page=${page+1},size=${size})}" th:if="${page < totalPages-1}">&gt;</a>
     </div>
 </div>
 </body>

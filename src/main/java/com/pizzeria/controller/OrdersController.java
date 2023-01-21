@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -75,15 +76,25 @@ public class OrdersController {
     }
 
 
-
     @GetMapping("/searchOrders")
-    public String searchOrders(@RequestParam("name") String name, Model model) {
+    public String searchOrders(@RequestParam("name") String name, Model model, @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
+                               @RequestParam(value = "direction", defaultValue = "asc") String direction,
+                               @RequestParam(value = "page", defaultValue = "0") int page,
+                               @RequestParam(value = "size", defaultValue = "4") int size) {
         List<Orders> orders = ordersRepository.findByOrderDetailsName(name);
-        if (orders.isEmpty()){
+        Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(direction), "date"),
+                new Sort.Order(Sort.Direction.fromString(direction), "customer.email"));
+        Page<Orders> ordersPage = ordersRepository.findAll(PageRequest.of(page, size, sort));
+        if (orders.isEmpty()) {
             model.addAttribute("action", "Brak zamówień dla podanego produktu");
             model.addAttribute("orders", ordersService.getAllOrders());
+            model.addAttribute("sortBy", sortBy);
+            model.addAttribute("direction", direction);
+            model.addAttribute("page", page);
+            model.addAttribute("size", size);
+            model.addAttribute("totalPages", ordersPage.getTotalPages());
             return "manageOrders";
-        }else{
+        } else {
             model.addAttribute("orders", orders);
             return "/searchOrders";
         }
@@ -93,13 +104,26 @@ public class OrdersController {
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
     }
+
     @GetMapping("/searchOrdersDate")
-    public String searchOrders(Model model, @RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        if(date != null) {
+    public String searchOrders(Model model, @RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+                               @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
+                               @RequestParam(value = "direction", defaultValue = "asc") String direction,
+                               @RequestParam(value = "page", defaultValue = "0") int page,
+                               @RequestParam(value = "size", defaultValue = "4") int size) {
+        Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(direction), "date"),
+                new Sort.Order(Sort.Direction.fromString(direction), "customer.email"));
+        Page<Orders> ordersPage = ordersRepository.findAll(PageRequest.of(page, size, sort));
+        if (date != null) {
             List<Orders> orders = ordersRepository.findByDate(date);
             if (orders.isEmpty()) {
                 model.addAttribute("action", "Brak zamówień w wybranym dniu");
                 model.addAttribute("orders", ordersService.getAllOrders());
+                model.addAttribute("sortBy", sortBy);
+                model.addAttribute("direction", direction);
+                model.addAttribute("page", page);
+                model.addAttribute("size", size);
+                model.addAttribute("totalPages", ordersPage.getTotalPages());
                 return "manageOrders";
             } else {
                 model.addAttribute("orders", orders);
@@ -108,6 +132,11 @@ public class OrdersController {
         } else {
             model.addAttribute("action", "Nie wpisano daty!");
             model.addAttribute("orders", ordersService.getAllOrders());
+            model.addAttribute("sortBy", sortBy);
+            model.addAttribute("direction", direction);
+            model.addAttribute("page", page);
+            model.addAttribute("size", size);
+            model.addAttribute("totalPages", ordersPage.getTotalPages());
             return "manageOrders";
         }
     }
