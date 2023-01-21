@@ -9,6 +9,9 @@ import com.pizzeria.service.OrderDetailsService;
 import com.pizzeria.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.Null;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -54,12 +56,24 @@ public class OrdersController {
         return "/viewOrders";
     }
 
-
     @GetMapping("/manageOrders")
-    public String manageOrders(Model model) {
-        model.addAttribute("orders", ordersService.getAllOrders());
+    public String manageOrders(Model model,
+                               @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
+                               @RequestParam(value = "direction", defaultValue = "asc") String direction,
+                               @RequestParam(value = "page", defaultValue = "0") int page,
+                               @RequestParam(value = "size", defaultValue = "4") int size) {
+        Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(direction), "date"),
+                new Sort.Order(Sort.Direction.fromString(direction), "customer.email"));
+        Page<Orders> ordersPage = ordersRepository.findAll(PageRequest.of(page, size, sort));
+        model.addAttribute("orders", ordersPage.getContent());
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("direction", direction);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        model.addAttribute("totalPages", ordersPage.getTotalPages());
         return "/manageOrders";
     }
+
 
 
     @GetMapping("/searchOrders")
