@@ -15,8 +15,8 @@
 <div class="menu_container">
     <div class="menu_middle">
         <h2>Lista zamówień</h2>
-        <form th:action="@{/searchOrdersDate}" method="POST">
-            <input type="date" name="name" Placeholder="YYYY-MM-DD" class="form_admin">
+        <form th:action="@{/searchOrdersDate}" method="get">
+            <input type="date" name="date" Placeholder="YYYY-MM-DD" class="form_admin">
             <button type="submit" class="admin_button_add">Szukaj</button>
         </form>
 
