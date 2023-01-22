@@ -20,23 +20,33 @@
             <thead>
             <tr>
                 <th class="admin_th">Id zamówienia</th>
-                <th class="admin_th">Id produktu</th>
                 <th class="admin_th">Data zamówienia</th>
-                <th class="admin_th">Ilość</th>
-                <th class="admin_th">Koszt</th>
                 <th class="admin_th">Email użytkownika</th>
                 <th class="admin_th">Imię</th>
+                <th class="admin_th">Koszt</th>
+                <th class="admin_th">Nazwa produktów</th>
+                <th class="admin_th">Ilość</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="orders : ${sOrders}">
-                <td th:text="${orders.id}" class="admin_td"></td>
-                <td th:text="${orders.productid}" class="admin_td"></td>
-                <td th:text="${orders.date}" class="admin_td"></td>
-                <td th:text="${orders.quantity}" class="admin_td"></td>
-                <td th:text="${orders.totalcost}" class="admin_td"></td>
-                <td th:text="${orders.customer.email}" class="admin_td"></td>
-                <td th:text="${orders.customer.name}" class="admin_td"></td>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}" class="admin_td"></td>
+                <td th:text="${order.date}" class="admin_td"></td>
+                <td th:text="${order.customer.email}" class="admin_td"></td>
+                <td th:text="${order.customer.name}" class="admin_td"></td>
+                <td th:text="${order.price}" class="admin_td"></td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="${od.name}"></a>
+                        <br>
+                    </span>
+                </td>
+                <td class="admin_td_orders">
+                    <span th:each="od : ${order.orderDetails}">
+                        <a th:text="'x' + ${od.quantity}"></a>
+                        <br>
+                    </span>
+                </td>
             </tr>
             </tbody>
         </table>

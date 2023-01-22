@@ -25,5 +25,7 @@ public class OrdersService {
 		return ordersRepository.findAll();
 	}
 
-
+	public List<Orders> getOrdersByEmail(String email) {
+		return ordersRepository.findByCustomerEmail(email);
+	}
 }

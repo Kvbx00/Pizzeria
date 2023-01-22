@@ -108,4 +108,12 @@ public class OrdersController {
             return "/noOrdersFound";
         }
     }
+
+    @GetMapping("/customerOrders/{email}")
+    public String customerOrders(@PathVariable("email") String email, Model model) {
+        List<Orders> orders = ordersService.getOrdersByEmail(email);
+        model.addAttribute("orders", orders);
+        model.addAttribute("customerEmail", email);
+        return "customerOrders";
+    }
 }
