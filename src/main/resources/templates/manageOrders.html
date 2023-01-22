@@ -55,12 +55,7 @@
                 <td th:text="${order.date}" class="admin_td_orders"></td>
                 <td th:text="${order.customer.email}" class="admin_td_orders"></td>
                 <td th:text="${order.customer.name}" class="admin_td_orders"></td>
-                <td class="admin_td_orders">
-                    <span th:each="od : ${order.orderDetails}">
-                        <a th:text="${od.totalcost}  + ' zł'"></a>
-                        <br>
-                    </span>
-                </td>
+                <td th:text="${order.price}" class="admin_td_orders"></td>
                 <td class="admin_td_orders">
                     <span th:each="od : ${order.orderDetails}">
                         <a th:text="${od.name}"></a>
