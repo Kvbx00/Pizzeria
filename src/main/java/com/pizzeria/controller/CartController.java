@@ -84,16 +84,14 @@ public class CartController {
         Orders orders = new Orders();
         String email = (String) session.getAttribute("customerLogin");
         Customer customer = customerService.getCustomer(email);
-
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         int min = 100000;
         int max = 999999;
         int b = (int) (Math.random() * (max - min + 1) + min);
         orders.setId(b);
         orders.setDate(date);
-        System.out.println(date);
         orders.setCustomer(customer);
-		ordersService.addOrders(orders);
+        float totalCost = 0;
         for (Cart cl : cartList) {
 			OrderDetails orderDetails = new OrderDetails();
             orderDetails.setProductid(cl.getProductId());
@@ -101,7 +99,18 @@ public class CartController {
             orderDetails.setQuantity(cl.getQuantity());
             orderDetails.setTotalcost(cl.getPrice());
             orderDetails.setOrders(orders);
-			orderDetailsService.addOrderDetails(orderDetails);
+            totalCost += cl.getPrice();
+        }
+        orders.setPrice(totalCost);
+        ordersService.addOrders(orders);
+        for (Cart cl : cartList) {
+            OrderDetails orderDetails = new OrderDetails();
+            orderDetails.setProductid(cl.getProductId());
+            orderDetails.setName(cl.getName());
+            orderDetails.setQuantity(cl.getQuantity());
+            orderDetails.setTotalcost(cl.getPrice());
+            orderDetails.setOrders(orders);
+            orderDetailsService.addOrderDetails(orderDetails);
         }
 		cartService.cartDeleteAll();
         session.setAttribute("action", "Produkty zostały pomyślnie zamówione");

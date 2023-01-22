@@ -1,6 +1,7 @@
 package com.pizzeria.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.List;
 
@@ -9,11 +10,16 @@ public class Orders {
 	@Id
 	private int id;
 	private Date date;
+
 	@OneToOne
 	private Customer customer;
 
 	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
 	public List<OrderDetails> orderDetails;
+
+	@NotNull
+	@Column(name = "price", nullable = false)
+	private Float price;
 
 	public Orders() {
 		super();
@@ -42,6 +48,14 @@ public class Orders {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
 	}
 
 	public Customer getCustomer() {

@@ -4,49 +4,28 @@
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
 
 <div class="header">
-    <a th:href="@{/getDashboard}" class="header_link">Powrót do panelu głównego</a>
+    <a th:href="@{/manageOrders}" class="header_link">Powrót do zarządzania zamówieniami</a>
 </div>
 
 <div class="menu_container">
     <div class="menu_middle">
         <h2>Lista zamówień</h2>
-        <form th:action="@{/searchOrdersDate}" method="get">
-            <input type="date" name="date" Placeholder="YYYY-MM-DD" class="form_admin">
-            <button type="submit" class="admin_button_add">Szukaj</button>
-        </form>
-
-        <form th:action="@{/searchOrders}" method="get">
-            <input type="text" name="name" Placeholder="Wyszukaj produkt" class="form_admin">
-            <button type="submit" class="admin_button_add">Szukaj</button>
-        </form>
         <h3 th:text="${action}"></h3>
         <span th:text="${session.action}"></span>
         <table class="table_menu">
             <thead>
             <tr>
                 <th class="admin_th_orders">Id zamówienia</th>
-                <th class="admin_th_orders">
-                    Data zamówienia
-                    <a th:href="@{/manageOrders(sortBy='date',direction=${direction=='asc'?'desc':'asc'},page=0,size=${size})}">
-                        <i style="font-size:17px; text-decoration: none; color: black" class="fas" th:class="${'fas fa-sort'}"></i>
-                    </a>
-                </th>
-                <th class="admin_th_orders">
-                    Email użytkownika
-                    <a th:href="@{/manageOrders(sortBy='customer.email',direction=${direction=='asc'?'desc':'asc'},page=0,size=${size})}">
-                        <i style="font-size:17px; text-decoration: none; color: black" class="fas" th:class="${'fas fa-sort'}"></i>
-                    </a>
-                </th>
+                <th class="admin_th_orders">Data zamówienia</th>
+                <th class="admin_th_orders">Email użytkownika</th>
                 <th class="admin_th_orders">Imię</th>
                 <th class="admin_th_orders">Koszt</th>
                 <th class="admin_th_orders">Nazwa produktów</th>
                 <th class="admin_th_orders">Ilość</th>
-                <th class="admin_th_orders">Akcje</th>
             </tr>
             </thead>
             <tbody>
@@ -73,13 +52,9 @@
                         <br>
                     </span>
                 </td>
-                <td class="admin_td_orders"><a th:href="@{/deleteOrders/{id}(id=${order.id})}">Usuń</a></td>
             </tr>
             </tbody>
         </table>
-        <a class="pagination" th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}" th:href="@{/manageOrders(sortBy=${sortBy},direction=${direction},page=${pageNumber},size=${size})}">
-            <span th:text="${pageNumber + 1}" th:class="${pageNumber == page} ? 'active'"></span>
-        </a>
     </div>
 </div>
 </body>

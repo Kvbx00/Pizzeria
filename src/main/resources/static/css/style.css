@@ -167,6 +167,18 @@ body {
 	background-size: cover;
 }
 
+.pagination{
+	font-size: 25px;
+	text-decoration: none;
+	color: black;
+	padding: 8px 11px;
+}
+
+.active{
+	font-size: 25px;
+	color: #bf9b1a;
+}
+
 .footer {
 	height: 250px;
 	width: 100%;

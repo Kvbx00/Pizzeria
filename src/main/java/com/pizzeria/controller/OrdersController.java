@@ -75,25 +75,12 @@ public class OrdersController {
         return "/manageOrders";
     }
 
-
     @GetMapping("/searchOrders")
-    public String searchOrders(@RequestParam("name") String name, Model model, @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
-                               @RequestParam(value = "direction", defaultValue = "asc") String direction,
-                               @RequestParam(value = "page", defaultValue = "0") int page,
-                               @RequestParam(value = "size", defaultValue = "4") int size) {
+    public String searchOrders(@RequestParam("name") String name, Model model) {
         List<Orders> orders = ordersRepository.findByOrderDetailsName(name);
-        Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(direction), "date"),
-                new Sort.Order(Sort.Direction.fromString(direction), "customer.email"));
-        Page<Orders> ordersPage = ordersRepository.findAll(PageRequest.of(page, size, sort));
         if (orders.isEmpty()) {
             model.addAttribute("action", "Brak zamówień dla podanego produktu");
-            model.addAttribute("orders", ordersService.getAllOrders());
-            model.addAttribute("sortBy", sortBy);
-            model.addAttribute("direction", direction);
-            model.addAttribute("page", page);
-            model.addAttribute("size", size);
-            model.addAttribute("totalPages", ordersPage.getTotalPages());
-            return "manageOrders";
+            return "/noOrdersFound";
         } else {
             model.addAttribute("orders", orders);
             return "/searchOrders";
@@ -106,38 +93,19 @@ public class OrdersController {
     }
 
     @GetMapping("/searchOrdersDate")
-    public String searchOrders(Model model, @RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-                               @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
-                               @RequestParam(value = "direction", defaultValue = "asc") String direction,
-                               @RequestParam(value = "page", defaultValue = "0") int page,
-                               @RequestParam(value = "size", defaultValue = "4") int size) {
-        Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(direction), "date"),
-                new Sort.Order(Sort.Direction.fromString(direction), "customer.email"));
-        Page<Orders> ordersPage = ordersRepository.findAll(PageRequest.of(page, size, sort));
+    public String searchOrders(Model model, @RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
         if (date != null) {
             List<Orders> orders = ordersRepository.findByDate(date);
             if (orders.isEmpty()) {
                 model.addAttribute("action", "Brak zamówień w wybranym dniu");
-                model.addAttribute("orders", ordersService.getAllOrders());
-                model.addAttribute("sortBy", sortBy);
-                model.addAttribute("direction", direction);
-                model.addAttribute("page", page);
-                model.addAttribute("size", size);
-                model.addAttribute("totalPages", ordersPage.getTotalPages());
-                return "manageOrders";
+                return "/noOrdersFound";
             } else {
                 model.addAttribute("orders", orders);
                 return "/searchOrders";
             }
         } else {
             model.addAttribute("action", "Nie wpisano daty!");
-            model.addAttribute("orders", ordersService.getAllOrders());
-            model.addAttribute("sortBy", sortBy);
-            model.addAttribute("direction", direction);
-            model.addAttribute("page", page);
-            model.addAttribute("size", size);
-            model.addAttribute("totalPages", ordersPage.getTotalPages());
-            return "manageOrders";
+            return "/noOrdersFound";
         }
     }
 }
